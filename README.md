@@ -1,15 +1,15 @@
 # **Tech Talent Pipeline (TTP) Residency, Summer 2026**
 
-Welcome! This is the cohort repo for the Tech Talent Pipeline Residency, Summer of 2026. This is your _single source of truth_ for all materials related to the program — assignments, recorded lectures, slides, and code demos. It is a living document, so **bookmark it** and check back regularly as new material is uploaded throughout the program.
+Welcome! This is the cohort repo for the Tech Talent Pipeline Residency, Summer of 2026. This is your _single source of truth_ for all materials related to the program — assignments, slides, and code demos. It is a living document, so **bookmark it** and check back regularly as new material is uploaded throughout the program.
 
-Here are a few things to keep in mind throughout this program:
+A few things to keep in mind:
 
-1. **Productive Struggle is The Goal.** If you never feel like you're struggling, something is wrong. Maybe the material isn't challenging enough — feel free to ask for extra challenges. Alternatively, you may not be engaging with the material the way I'm expecting, so don't hesitate to ask if you're on the right track. Not all struggle is _productive_, though. If you've been spinning your wheels for hours and going nowhere, ask for help. We have an incredible team here to support you — take advantage of it.
-2. **Software Engineering is a Team Sport.** This program is designed around working with others, in pairs and on larger teams. Our aim is to prepare you for an actual job in tech, which consists of a lot of collaboration. You may be paired with someone who has a very different communication style or problem-solving approach than you. Practice active listening and be proactive about your needs. If you're truly at a roadblock, reach out to a TA or to me.
-3. **Curiosity is Learning Fuel.** A career in tech requires a consistent desire to learn. This industry changes rapidly — skills you develop one year may be obsolete the next. I will often give you problems that require scanning documentation, digging through old threads, and experimenting on your own. Wonder: what else can I do with this? How does this work under the hood? What if I combine this with what we learned last week? Spend this summer cultivating your mind's natural wanderlust.
-4. **AI is a Tool, Not a Crutch.** This cohort is the first to formally integrate AI-assisted development tools (Warp, Cursor, Claude Code, Codex) from day one. The goal is not to let AI do your thinking — it is to use AI to amplify your thinking. You are expected to understand every line of code in your projects, whether you wrote it or generated it. The engineer who can reason clearly about code is the one who stays employable.
+1. **Struggle means you're growing.** Feeling stuck is a sign the material is doing its job. Give it an honest effort — then ask for help. You're not supposed to figure everything out alone, and knowing when to reach out is a skill too.
+2. **Collaboration is part of the curriculum.** You'll pair program, build in groups, and review each other's code. Learning to work well with people who think differently than you is one of the most valuable things you'll take away from this program.
+3. **Stay curious.** The best engineers aren't the ones who memorize everything — they're the ones who know how to dig in, read the docs, and ask the right questions. That habit starts here.
+4. **Use AI as a thought partner, not a shortcut.** This cohort works with Warp, Cursor, Claude Code, and Codex from day one. These tools can genuinely accelerate your growth — but only if you understand what they're producing. Own every line in your projects.
 
-Let's do this.
+Let's build something great.
 
 ---
 
@@ -218,14 +218,14 @@ August 17 – August 21
 
 **Capstone Phase — Weeks 8–12 (July 20 – August 20)**
 
-| Time              | Mon–Thu                                                | Friday                                                |
-| ----------------- | ------------------------------------------------------ | ----------------------------------------------------- |
-| 10:00AM – 12:00PM | Project Work + Help Tickets (attendance at 10:15AM)    | Project Work + Help Tickets (attendance at 10:15AM)   |
-| 12:00PM – 1:00PM  | Lunch                                                  | Lunch                                                 |
-| 1:00PM – 1:15PM   | Daily Standup                                          | Daily Standup                                         |
-| 1:15PM – 3:45PM   | Project Work + Help Tickets                            | Pair Programming / Code Review (Frontend + Backend)   |
-| 3:45PM – 4:45PM   | Pair Programming / Code Review (Frontend then Backend) | Project Work + Help Tickets (TAs exit at 4:00PM)      |
-| 4:45PM – 5:00PM   | EOD Announcements                                      | EOD Announcements                                     |
+| Time              | Mon–Thu                                                | Friday                                              |
+| ----------------- | ------------------------------------------------------ | --------------------------------------------------- |
+| 10:00AM – 12:00PM | Project Work + Help Tickets (attendance at 10:15AM)    | Project Work + Help Tickets (attendance at 10:15AM) |
+| 12:00PM – 1:00PM  | Lunch                                                  | Lunch                                               |
+| 1:00PM – 1:15PM   | Daily Standup                                          | Daily Standup                                       |
+| 1:15PM – 3:45PM   | Project Work + Help Tickets                            | Pair Programming / Code Review (Frontend + Backend) |
+| 3:45PM – 4:45PM   | Pair Programming / Code Review (Frontend then Backend) | Project Work + Help Tickets (TAs exit at 4:00PM)    |
+| 4:45PM – 5:00PM   | EOD Announcements                                      | EOD Announcements                                   |
 
 **Demo Day (August 21)**
 
