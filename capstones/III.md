@@ -42,8 +42,16 @@ Your PRD must include:
 |--------|-------|------|
 | Sprint 1 | Aug 3–7 | PRD submitted, schema designed, repo set up, core features started |
 | Sprint 2 | Aug 10–14 | Core features complete, stretch goals in progress, deployed |
-| Demo Prep | Aug 17–20 | Polish, seed data, presentation rehearsed |
+| Demo Prep | Aug 17–20 | Polish, seed data, slides finalized, demo rehearsed with TAs |
 | Demo Day | Aug 21 | Ship it |
+
+**By Aug 17 (first day of Demo Prep), every team should have:**
+- A shareable slide deck URL (Google Slides, Figma, or similar)
+- A public GitHub repo with a complete README
+
+This gives instructional staff a clear signal early. If a team is behind on features or doesn't have slides ready by Aug 17, instructors will step in — ideally the conversation happens on Aug 14 (last day of Sprint 2) so there's no surprise.
+
+**Demo Prep is real work.** Budget time during Aug 17–20 to run through your full demo with your TA at least once before Demo Day. This is not optional — a rehearsed demo is a better demo. Your TA can help you trim the flow, fix timing, and catch anything that breaks under pressure.
 
 ---
 
@@ -73,12 +81,12 @@ Your app will be judged on four things: does it work, does it look good, can you
 - **5 - 7 minute presentation**:
   1. The problem — what are you trying to solve?
   2. Live demo — show the golden path, not every feature
-  3. Tech highlights (3-5 slides)
-    3.1 What was your tech stack and why did you choose it?
-    3.2 What was the hardest technical problem you solved?
-    3.3 What are you most proud of?
-    3.4 What would you change if you had more time?
-    3.5 Anything else you want to share
+  3. Tech highlights (3-5 slides)  
+    3.1 What was your tech stack and why did you choose it?  
+    3.2 What was the hardest technical problem you solved?  
+    3.3 What are you most proud of?  
+    3.4 What would you change if you had more time?  
+    3.5 Anything else you want to share  
 
 Rehearse the demo. Know who speaks when. Have a backup plan if the internet goes down.
 
