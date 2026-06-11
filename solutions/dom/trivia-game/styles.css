@@ -1,0 +1,240 @@
+/* =============================================================
+   GLOBAL RESET & BASE STYLES
+   box-sizing: border-box makes width/height include padding and
+   border, so layout math is predictable.
+   margin: 0 / padding: 0 removes browser defaults.
+============================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a2e; /* dark blue-purple background */
+  color: #eee;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;  /* center horizontally */
+  align-items: flex-start;  /* align to top, not middle */
+  padding: 2rem 1rem;
+}
+
+/* =============================================================
+   LAYOUT WRAPPER
+   #game is the <main> element — it constrains the width and
+   stacks everything in a column.
+============================================================= */
+#game {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* =============================================================
+   HEADER
+============================================================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+#game-title {
+  font-size: 1.6rem;
+  color: #e0e0ff;
+  letter-spacing: 0.03em;
+}
+
+#score-display {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #a0a8ff;
+  background: rgba(255,255,255,0.08);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+}
+
+/* =============================================================
+   QUESTION CARD
+   This is the white card that holds the question and buttons.
+   box-shadow gives it depth; border-radius rounds the corners.
+============================================================= */
+#question-card {
+  background: #16213e;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border-left: 4px solid #3a3a6a; /* subtle accent */
+}
+
+/* When .answered is added by JS, the left border becomes a muted blue */
+#question-card.answered {
+  border-left: 4px solid #90a4ae;
+}
+
+#question-number {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7878aa;
+  margin-bottom: 1rem;
+}
+
+#question-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #e0e0ff;
+  margin-bottom: 1.8rem;
+}
+
+/* =============================================================
+   ANSWER LIST
+   Remove default <ul> bullet styling.
+   Each <li> stacks vertically with a small gap between them.
+============================================================= */
+#answer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* =============================================================
+   ANSWER BUTTONS
+   Full width so the click target fills the entire row.
+   cursor: pointer signals interactivity.
+   transition makes color changes animate smoothly.
+============================================================= */
+.answer-btn {
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  font-size: 1rem;
+  text-align: left;
+  background: #0f3460;
+  color: #dde;
+  border: 2px solid #2a2a5a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.answer-btn:hover {
+  background: #1a4a80;
+  border-color: #5555aa;
+  transform: translateX(3px); /* subtle nudge on hover */
+}
+
+.answer-btn:focus {
+  /* Accessibility: always show a visible focus ring for keyboard users */
+  outline: 3px solid #7878ff;
+  outline-offset: 2px;
+}
+
+/* =============================================================
+   STATE CLASSES — JavaScript adds these during gameplay.
+
+   These classes are defined in CSS but applied by JS.
+   That separation keeps styling decisions in CSS,
+   and logic decisions in JavaScript.
+============================================================= */
+
+/* The player clicked the CORRECT answer */
+.correct {
+  background-color: #4caf50;
+  color: white;
+  border-color: #388e3c;
+}
+
+/* The player clicked the WRONG answer */
+.wrong {
+  background-color: #e53935;
+  color: white;
+  border-color: #c62828;
+}
+
+/*
+  ALL buttons are disabled after any answer is clicked.
+  pointer-events: none prevents clicks entirely.
+  opacity: 0.5 visually dims them.
+*/
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* =============================================================
+   HIDDEN CLASS
+   The universal "don't show this" class.
+   Used on #next-btn and #end-screen initially.
+   Removing this class with JS makes the element reappear.
+============================================================= */
+.hidden {
+  display: none;
+}
+
+/* =============================================================
+   NEXT BUTTON
+============================================================= */
+#next-btn {
+  display: block;          /* so we can center it with margin */
+  margin: 0.5rem auto 0;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  background: #533483;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#next-btn:hover {
+  background: #6a44a8;
+}
+
+/* =============================================================
+   END SCREEN
+   Completely separate visual style so it feels like a new state.
+   Starts with class="hidden" — JS removes that when game ends.
+============================================================= */
+#end-screen {
+  background: linear-gradient(135deg, #16213e, #0f3460);
+  border-radius: 14px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  margin-top: 1rem;
+}
+
+#end-screen h2 {
+  font-size: 2rem;
+  color: #e0e0ff;
+  margin-bottom: 1rem;
+}
+
+#end-screen p {
+  font-size: 1.1rem;
+  color: #a0a8ff;
+  margin-bottom: 2rem;
+}
+
+/* "Play Again" button — created by JS, styled here by its id */
+#restart-btn {
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#restart-btn:hover {
+  background: #388e3c;
+}

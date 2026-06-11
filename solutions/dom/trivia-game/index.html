@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+  DOCTYPE tells the browser this is a modern HTML5 document.
+  Always include this as the very first line.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!--
+    charset="UTF-8" means the page supports all characters —
+    letters, symbols, emoji, etc. Always include this.
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    viewport meta tag makes the page scale correctly on phones.
+    Without it, mobile browsers zoom out and render the page tiny.
+  -->
+
+  <title>Quick Fire Trivia</title>
+
+  <!-- Link to our stylesheet. Goes in <head> so styles load before content appears. -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!--
+    defer tells the browser:
+    "Download this script in the background, but don't run it until
+    the full HTML is parsed."
+
+    Why does this matter? If you put <script> in <head> WITHOUT defer,
+    JavaScript runs before the DOM elements exist — and your selectors
+    return null. defer is the safest default for page scripts.
+  -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!--
+    <main> is a semantic landmark — it tells browsers, screen readers,
+    and search engines "this is the primary content of the page."
+    id="game" gives JavaScript a hook to select it if needed.
+  -->
+  <main id="game">
+
+    <!-- ============================================================
+         HEADER: title + live score display
+         The <span id="score"> is what JavaScript will update.
+         We wrap the number in a span so we can target just that
+         piece of text without replacing "Score: ".
+    ============================================================ -->
+    <header>
+      <h1 id="game-title">Quick Fire Trivia</h1>
+      <div id="score-display">Score: <span id="score">0</span></div>
+    </header>
+
+    <!-- ============================================================
+         QUESTION CARD: the main game area.
+         JavaScript will update the text inside each element —
+         the structure (the HTML tags) stays the same the whole time.
+    ============================================================ -->
+    <section id="question-card">
+
+      <!-- "Question 1 of 5" — JS rewrites this on each new question -->
+      <p id="question-number">Question 1 of 5</p>
+
+      <!-- The question itself — JS rewrites this each round -->
+      <h2 id="question-text">Who invented the World Wide Web?</h2>
+
+      <!--
+        The answer buttons live inside a <ul>.
+        In Phase 4 we attach ONE click listener to this <ul> instead
+        of four separate listeners. That's event delegation.
+
+        Each <li> wraps a <button> — semantic HTML for a list of choices.
+        class="answer-btn" is the shared hook that CSS and JS use
+        to style and select all four buttons at once.
+      -->
+      <ul id="answer-list">
+        <li><button class="answer-btn">Tim Berners-Lee</button></li>
+        <li><button class="answer-btn">Bill Gates</button></li>
+        <li><button class="answer-btn">Linus Torvalds</button></li>
+        <li><button class="answer-btn">Ada Lovelace</button></li>
+      </ul>
+
+      <!--
+        class="hidden" hides this button on page load (display: none in CSS).
+        JavaScript removes that class after the player picks an answer.
+        Using a class to show/hide is better than inline styles because
+        the logic lives in CSS where it belongs.
+      -->
+      <button id="next-btn" class="hidden">Next Question →</button>
+
+    </section>
+
+    <!-- ============================================================
+         END SCREEN: starts hidden.
+         JavaScript will:
+           1. Remove class="hidden" to make it appear
+           2. Create and append child elements (<h2>, <p>, <button>)
+              entirely with document.createElement — no hardcoded HTML.
+    ============================================================ -->
+    <section id="end-screen" class="hidden"></section>
+
+  </main>
+
+</body>
+</html>
