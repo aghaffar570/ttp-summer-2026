@@ -54,14 +54,16 @@ June 8 – June 12
 
 | Topic                        | Assignment                                                              | Lecture | Slides                                          | Demo |
 | ---------------------------- | ----------------------------------------------------------------------- | ------- | ----------------------------------------------- | ---- |
-| DOM Manipulation             | [📝 workshop][dom-asst]                         | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | -    |
-| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | -    |
+| DOM Manipulation             | [📝 workshop][dom-asst]                         | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | [📽️][dom-solution-part1]    |
+| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | [📽️][git-collaboration-demo]    |
 
 [git-collab-asst]: ./assignments/Git-Collab.md
 [ai-tools-asst]: ./assignments/AI-Tools-Setup.md
 [dom-asst]: ./assignments/DOM.md
 [dom-i-slides]: ./slides/DOM-1.pdf
 [dom-ii-slides]: ./slides/DOM-2.pdf
+[dom-solution-part1]: https://www.youtube.com/watch?v=kyvhmCw94fk
+[git-collaboration-demo]: https://www.youtube.com/watch?v=v51scylhY7c
 
 ---
 
