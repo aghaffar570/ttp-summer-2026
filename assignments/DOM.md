@@ -243,9 +243,9 @@ git commit -m "phase 2: read and modify DOM content, classes, and traverse the t
 
 ---
 
-## Phase 3: Your Data
+## Phase 3: Your Questions
 
-Before adding any interaction, define the data your game will run on.
+Before adding any interaction, write out the questions your game will use.
 
 At the top of `script.js` — above everything else — add a `questions` array. Write at least three real questions. Each object has this shape:
 
@@ -265,7 +265,7 @@ const questions = [
 ]
 ```
 
-Also add two state variables that will track the game as it progresses:
+Also add two variables to keep track of where the player is in the game:
 
 ```js
 let currentIndex = 0
@@ -296,7 +296,7 @@ function loadQuestion(index) {
 
 Call it at the bottom of the file: `loadQuestion(0)`
 
-**Refresh the browser.** The placeholder question you typed in the HTML is replaced by the first question from your array. That's the render pattern: data drives the DOM, not the other way around.
+**Refresh the browser.** The placeholder question you typed in the HTML is gone — `loadQuestion` just updated the DOM elements directly with the first question's content.
 
 **Commit your work:**
 ```
