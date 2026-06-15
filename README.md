@@ -77,15 +77,15 @@ Off June 19 – JUNETEENTH
 
 | Topic        | Assignment        | Lecture | Slides                      | Demo |
 | ------------ | ----------------- | ------- | --------------------------- | ---- |
-| React I      | [📝][react1-asst] | -       | [PDF][react1-slides]        | -    |
+| React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | -    |
+| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | -    |
 | API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | -    |
-| React II     | [📝][react2-asst] | -       | [PDF][react2-slides]        | -    |
+
 
 [react1-asst]: ./assignments/React.md
 [api-asst]: ./assignments/APIRequests.md
 [react2-asst]: ./assignments/React2.md
-[react1-slides]: ./slides/React-1.pdf
-[react2-slides]: ./slides/React-2-Forms.pdf
+[react-slides]: ./slides/REACT.pdf
 [fullstack-api-slides]: ./slides/APIs-Express-CRUD.pdf
 
 ---
