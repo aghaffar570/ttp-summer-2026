@@ -12,6 +12,19 @@ By the end of this assignment you will have practiced:
 
 ---
 
+## Working in Groups
+
+You will work together on one screen — one person types, the other reads along and helps catch mistakes. Switch who is typing at each checkpoint.
+
+One person creates the GitHub repository and adds the other as a collaborator:
+
+1. The repo owner goes to the repository on GitHub, then **Settings → Collaborators → Add people**.
+2. The collaborator accepts the invite from their email or GitHub notifications.
+
+Both people should be looking at the screen at all times. The person not typing should be reading the instructions out loud, checking the browser, and catching errors.
+
+---
+
 ## Step 0 — Set Up Your Project
 
 Open your terminal and run these four commands. Run them **one at a time** and wait for each one to finish before running the next.
@@ -71,25 +84,19 @@ Each movie has five pieces of information: `id`, `title`, `genre`, `year`, and `
 
 ### Step 1.1 — Write the App component
 
-Below the movie data you pasted, write this:
-
-```jsx
-import { useState } from 'react'
-
-export default function App() {
-  const [movies, setMovies] = useState(initialMovies)
-
-  return (
-    <div>
-      <h1>Movie Night</h1>
-    </div>
-  )
-}
-```
+Below the movie data you pasted, write a function called `App`. It should:
+- Import `useState` from `'react'` at the top of the file
+- Use `useState` to store the `initialMovies` array as state — name the state variable `movies`
+- Return a `<div>` that contains an `<h1>` with the text "Movie Night"
+- Export the function as the default export
 
 Save the file. Go to your browser. You should see the words **Movie Night** on the page.
 
-> `useState(initialMovies)` creates a piece of state called `movies`. React will remember this data and update the screen whenever it changes. `setMovies` is the function you will use later to change it.
+> **What is `useState`?** It is a React tool that lets your component remember data. When that data changes, React automatically updates what the user sees on screen. It gives you two things: the current value, and a function to change it.
+>
+> **Hint:** `useState` takes a starting value as its argument. What is your starting movie list called?
+>
+> **Gotcha:** If your page is blank, check two things: does your function name start with a capital letter? Does the file have `export default` in front of the function name?
 
 ---
 
@@ -97,27 +104,19 @@ Save the file. Go to your browser. You should see the words **Movie Night** on t
 
 Right now you only have a heading. Next, you will display the list of movies.
 
-Inside your `return`, add a `.map()` below the `<h1>`:
+Inside your `return`, below the `<h1>`, use `.map()` to go through the `movies` array. For each movie, display:
+- The movie's title
+- The genre and year on the same line
 
-```jsx
-return (
-  <div>
-    <h1>Movie Night</h1>
-
-    {movies.map((movie) => (
-      <div key={movie.id}>
-        <p>{movie.title}</p>
-        <p>{movie.genre} — {movie.year}</p>
-      </div>
-    ))}
-
-  </div>
-)
-```
+Wrap each movie's output in a `<div>`. Give each `<div>` a special prop called `key` and set it to the movie's `id`.
 
 Save the file. You should now see all **six movies** listed on the page.
 
-> `.map()` goes through every item in the `movies` array and returns a piece of JSX for each one. The `key` is required — it helps React keep track of which item is which.
+> **What is `.map()`?** It goes through every item in an array and returns something for each one. Here, you are returning a piece of JSX for each movie.
+>
+> **Hint:** To show a JavaScript value inside JSX, wrap it in curly braces: `{movie.title}`.
+>
+> **Gotcha:** Every item inside a `.map()` must have a `key`. Without it, React will warn you in the console and your list may behave strangely when items change.
 
 ---
 
@@ -141,68 +140,45 @@ In your `src` folder, create a new file called `MovieCard.jsx`.
 
 ### Step 2.2 — Write the MovieCard component
 
-Open `MovieCard.jsx` and write this:
+Open `MovieCard.jsx`. Write a component called `MovieCard` that:
+- Accepts one prop — a single movie object. Name the parameter `movie`.
+- Displays the movie's title and the genre and year on the same line.
+- Exports the function as the default export.
 
-```jsx
-export default function MovieCard({ movie }) {
-  return (
-    <div>
-      <p>{movie.title}</p>
-      <p>{movie.genre} — {movie.year}</p>
-    </div>
-  )
-}
-```
-
-This component receives one movie object (called `movie`) and displays it.
+> **What are props?** Props are how you pass information from one component to another. They work like function parameters.
+>
+> **Hint:** Your function will receive props as an object. You can pull out just the `movie` key by writing `{ movie }` inside the parentheses: `function MovieCard({ movie })`. This is called **destructuring** — it might look unusual, but it is just a shortcut for `const movie = props.movie`.
+>
+> **Gotcha:** If you see "Cannot read properties of undefined", it usually means `movie` is not arriving as a prop. Check how you are calling `<MovieCard />` in the next step.
 
 ---
 
 ### Step 2.3 — Use MovieCard in App
 
-Go back to `App.jsx`. At the top of the file (above `const initialMovies`), add this import:
+Go back to `App.jsx`. You need to do two things:
 
-```js
-import MovieCard from './MovieCard'
-```
-
-Then update your `.map()` to use `<MovieCard />` instead of plain divs:
-
-```jsx
-{movies.map((movie) => (
-  <MovieCard key={movie.id} movie={movie} />
-))}
-```
+1. Import `MovieCard` at the top of the file. The path will be `'./MovieCard'` — the dot-slash means "in the same folder".
+2. Update your `.map()` to render `<MovieCard />` instead of plain divs. Pass the current movie to it as a prop named `movie`. Move the `key` prop onto `<MovieCard />`.
 
 Save the file. Your page should look exactly the same as before — all six movies should still appear.
+
+> **Gotcha:** The `key` prop belongs on the outermost element inside the `.map()`. Since `<MovieCard />` is now the outermost thing, put `key` there — not inside `MovieCard.jsx`.
 
 ---
 
 ### Step 2.4 — Show the watched status
 
-Each movie has a `watched` field — it is either `true` or `false`.
+Each movie has a `watched` field. It is either `true` or `false`.
 
-Open `MovieCard.jsx` and add a line that shows the watched status. Update the component to look like this:
+Open `MovieCard.jsx`. Before your `return` statement, figure out what text to show:
+- If `movie.watched` is `true`, use the text **Watched**
+- Otherwise, use the text **Not watched yet**
 
-```jsx
-export default function MovieCard({ movie }) {
-
-  let status = 'Not watched yet'
-  if (movie.watched === true) {
-    status = 'Watched'
-  }
-
-  return (
-    <div>
-      <p>{movie.title}</p>
-      <p>{movie.genre} — {movie.year}</p>
-      <p>{status}</p>
-    </div>
-  )
-}
-```
+Store that text in a variable. Then add a `<p>` to your JSX that displays it.
 
 Save the file. Movies 3 and 5 (Everything Everywhere and Coco) should now show **Watched**. The others should show **Not watched yet**.
+
+> **Hint:** Use a plain `if` statement. Declare a variable before the `return`, set it based on the condition, then use it inside your JSX with `{ }`.
 
 ---
 
@@ -220,82 +196,44 @@ This is the most important part. Read each step carefully before you write any c
 
 ### Step 3.1 — Write the toggleWatched function in App
 
-Open `App.jsx`. Inside your `App` function, add this function **above the `return`**:
+Open `App.jsx`. Inside your `App` function, above the `return`, write a function called `toggleWatched`. It should:
+- Accept one argument: the `id` of the movie to toggle
+- Use `.map()` to go through the `movies` array
+- For the movie whose `id` matches the argument, return a copy of it with `watched` flipped to the opposite value (`true` becomes `false`, `false` becomes `true`)
+- For all other movies, return them unchanged
+- Call `setMovies` with the result
 
-```jsx
-const toggleWatched = (id) => {
-  const updatedMovies = movies.map((movie) => {
-    if (movie.id === id) {
-      return { ...movie, watched: !movie.watched }
-    }
-    return movie
-  })
-  setMovies(updatedMovies)
-}
-```
+Then call `setMovies` with the updated array.
 
-**What this does, line by line:**
-
-- `movies.map(...)` — goes through every movie in the list
-- `if (movie.id === id)` — finds the one movie that was clicked
-- `{ ...movie, watched: !movie.watched }` — creates a copy of that movie, but with `watched` flipped from `true` to `false` (or from `false` to `true`)
-- `return movie` — all other movies come back unchanged
-- `setMovies(updatedMovies)` — gives React the new list so the screen updates
-
-> **Why can't you just do `movie.watched = true`?**
-> In React, you are not allowed to change state data directly. If you do, React does not know anything changed and the screen will not update. You must always create a new value and pass it to the setter function (`setMovies`).
+> **Why can't you just do `movie.watched = !movie.watched`?**
+> In React, you are not allowed to change state directly. If you do, React does not know anything changed and the screen will not update. You must always create a new value and pass it to the setter function.
+>
+> **Hint:** To flip a boolean, use `!value`. If `watched` is `true`, then `!watched` is `false`.
+>
+> **Hint:** To create a copy of an object with one property changed, look into the **spread operator**: `{ ...movie }` creates a copy of all of `movie`'s properties. You can then add a property after it to override just that one: `{ ...movie, watched: !movie.watched }`.
+>
+> **Gotcha:** Your `.map()` must return something for every item — not just the one you are changing. If you forget `return` for the unchanged movies, the others will disappear from your list.
 
 ---
 
 ### Step 3.2 — Pass toggleWatched to MovieCard
 
-In your `.map()` inside `App.jsx`, pass `toggleWatched` as a prop to each `MovieCard`:
+In your `.map()` inside `App.jsx`, pass `toggleWatched` to each `<MovieCard />` as a prop. Name the prop `onToggle`.
 
-```jsx
-{movies.map((movie) => (
-  <MovieCard
-    key={movie.id}
-    movie={movie}
-    onToggle={toggleWatched}
-  />
-))}
-```
+> **Gotcha:** You are passing the function itself, not calling it. Do not put parentheses after `toggleWatched`. Writing `onToggle={toggleWatched()}` would call the function immediately on page load — not what you want.
 
 ---
 
 ### Step 3.3 — Add a button to MovieCard
 
-Open `MovieCard.jsx`. Update the component to receive the `onToggle` prop and add a button:
-
-```jsx
-export default function MovieCard({ movie, onToggle }) {
-
-  let status = 'Not watched yet'
-  if (movie.watched === true) {
-    status = 'Watched'
-  }
-
-  let buttonLabel = 'Mark as Watched'
-  if (movie.watched === true) {
-    buttonLabel = 'Mark as Unwatched'
-  }
-
-  return (
-    <div>
-      <p>{movie.title}</p>
-      <p>{movie.genre} — {movie.year}</p>
-      <p>{status}</p>
-      <button onClick={() => onToggle(movie.id)}>
-        {buttonLabel}
-      </button>
-    </div>
-  )
-}
-```
+Open `MovieCard.jsx`. Update your component to:
+1. Accept a second prop: `onToggle`
+2. Decide what the button label should say — if the movie is watched, show **Mark as Unwatched**; otherwise show **Mark as Watched**. Use the same pattern you used for the status text.
+3. Add a `<button>` element that, when clicked, calls `onToggle` and passes it the movie's `id`
 
 Save both files. Click a button on any movie. The status text and button label should both change immediately.
 
-> **Common mistake:** Do not write `onClick={onToggle(movie.id)}`. That runs the function immediately when the page loads. Write `onClick={() => onToggle(movie.id)}` — this tells React to run the function only when the button is clicked.
+> **Gotcha:** Do not write `onClick={onToggle(movie.id)}`. That calls the function the moment the page loads, not when the button is clicked. Wrap it in an arrow function so it only runs on click: `onClick={() => onToggle(movie.id)}`.
 
 ---
 
@@ -307,25 +245,18 @@ Save both files. Click a button on any movie. The status text and button label s
 
 **New ideas in this part:** calculating values from state
 
-At the top of your page, you will show three numbers: total movies, how many are watched, and how many are not.
+At the top of your page, display three numbers:
+- Total number of movies
+- How many are watched
+- How many are not yet watched
 
-Open `App.jsx`. Inside your `App` function, add these three lines **above the `return`**:
+In `App.jsx`, above the `return`, calculate these three values from the `movies` array. Then display them inside a `<p>` in your JSX.
 
-```jsx
-const total = movies.length
-const watched = movies.filter((m) => m.watched === true).length
-const notWatched = total - watched
-```
+Click a toggle button — the numbers should update automatically without any extra code.
 
-Then add a paragraph inside your `return` to display them:
-
-```jsx
-<p>Total: {total} | Watched: {watched} | Still to watch: {notWatched}</p>
-```
-
-Save the file. The three numbers should appear. Click a toggle button — the watched and not-watched counts should update automatically.
-
-> These numbers do not need their own state. They are calculated directly from `movies`. Every time `movies` changes, React re-runs `App` and recalculates them.
+> **Hint:** `array.length` gives you the count of items. `array.filter(...)` returns a new array with only the items that match a condition. Chain `.length` onto `filter` to get a count.
+>
+> **Why don't these need their own `useState`?** They are calculated directly from `movies`. Every time `movies` changes, React re-runs `App` and recalculates them. Storing them in state would be redundant.
 
 ---
 
@@ -351,9 +282,9 @@ Before you submit, confirm each item:
 
 Only start these after everything above is working.
 
-- [ ] Right now `status` and `buttonLabel` each use an `if` statement. Try rewriting them as a single line using a ternary: `condition ? valueIfTrue : valueIfFalse`.
-- [ ] Add a `removeMovie(id)` function in `App` that removes a movie from the list. Pass it to `MovieCard` as a prop and add a Remove button.
-- [ ] Add a button at the top that, when clicked, hides all unwatched movies. Click it again to show all movies.
+- [ ] Right now you used `if` statements for `status` and `buttonLabel`. Try rewriting them as a single line using a **ternary**: `condition ? valueIfTrue : valueIfFalse`.
+- [ ] Add a `removeMovie` function in `App` that removes a movie from the list. Pass it to `MovieCard` as a prop and add a Remove button. Hint: look at how `.filter()` works.
+- [ ] Add a button at the top that hides all unwatched movies when clicked. Click again to show all.
 - [ ] Move the stats paragraph into its own component called `StatsBar`. Pass `movies` to it as a prop.
 
 ---

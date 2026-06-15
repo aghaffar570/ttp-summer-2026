@@ -11,6 +11,19 @@ By the end of this assignment you will have practiced:
 
 ---
 
+## Working in Groups
+
+You will work together on one screen — one person types, the other reads along and helps catch mistakes. Switch who is typing at each checkpoint.
+
+One person creates the GitHub repository and adds the other as a collaborator:
+
+1. The repo owner goes to the repository on GitHub, then **Settings → Collaborators → Add people**.
+2. The collaborator accepts the invite from their email or GitHub notifications.
+
+Both people should be looking at the screen at all times. The person not typing should be reading the instructions out loud, checking the browser, and catching errors.
+
+---
+
 ## Step 0 — Set Up Your Project
 
 Open your terminal. Run these four commands **one at a time**. Wait for each one to finish before running the next.
@@ -48,55 +61,35 @@ Before building the full form, you are going to practice with one input first. T
 
 ### Step 1.1 — Write a basic App component
 
-Open `src/App.jsx` and write this:
-
-```jsx
-import { useState } from 'react'
-
-export default function App() {
-  const [name, setName] = useState('')
-
-  return (
-    <div>
-      <h1>RSVP Practice</h1>
-      <input type="text" />
-    </div>
-  )
-}
-```
+Open `src/App.jsx`. Write a component called `App` that:
+- Imports `useState` from `'react'`
+- Creates one piece of state: a variable called `name` that starts as an empty string `''`
+- Returns a `<div>` with an `<h1>` that says "RSVP Practice" and a plain `<input type="text" />`
+- Is exported as the default export
 
 Save the file. You should see a heading and an empty text box in the browser.
 
-Try typing in the text box. It works — but React does not know about what you are typing yet. That is what you will fix in the next step.
+Try typing in the text box. It works — but React does not know what you are typing yet. That is what you will fix next.
+
+> **Gotcha:** If your page is blank, check: does your component name start with a capital letter? Is it the default export?
 
 ---
 
 ### Step 1.2 — Connect the input to state
 
-Update your `<input>` to look like this:
+Update your `<input>` so that:
+- Its displayed value always matches the `name` state variable
+- Every time you press a key, it updates the `name` state variable with what you typed
 
-```jsx
-<input
-  type="text"
-  value={name}
-  onChange={(e) => setName(e.target.value)}
-/>
-```
-
-Now add a line below the input to display the state value:
-
-```jsx
-<p>You typed: {name}</p>
-```
+Then add a `<p>` below the input that displays the current value of `name`.
 
 Save the file. Type something in the text box. You should see the text appear below the box at the same time you type.
 
-> **What is happening here?**
-> - `value={name}` — the input always shows whatever is in the `name` state variable
-> - `onChange={(e) => setName(e.target.value)}` — every time you press a key, this updates the state with what you typed
-> - React sees the state change and re-renders the component, which updates the input and the paragraph at the same time
-
-This is called a **controlled input**. React owns the value. The input just displays it.
+> **What is a controlled input?** React owns the value. The input just displays it. Two things make this work:
+> - `value={name}` — tells the input what to show
+> - `onChange` — an event that fires on every keystroke. The event object `e` has `e.target.value`, which is what the user just typed.
+>
+> **Gotcha:** If you can type in the box but nothing appears below it, check that your `onChange` is calling `setName`.
 
 ---
 
@@ -126,56 +119,23 @@ Now you will build the real form. It will have two inputs: name and email.
 
 ### Step 2.1 — Add a second state variable for email
 
-Inside your `App` function, add a second state variable:
-
-```jsx
-const [name, setName] = useState('')
-const [email, setEmail] = useState('')
-```
+Inside your `App` function, add a second piece of state — a variable called `email` that starts as an empty string.
 
 ---
 
 ### Step 2.2 — Replace the input with a full form
 
-Replace your current `return` with this:
-
-```jsx
-return (
-  <div>
-    <h1>Company Picnic RSVP</h1>
-
-    <form>
-
-      <div>
-        <label>Name</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
-      <button type="submit">Add Guest</button>
-
-    </form>
-
-    <p>Name: {name}</p>
-    <p>Email: {email}</p>
-
-  </div>
-)
-```
+Replace everything inside your `return` with a layout that has:
+- An `<h1>` that says "Company Picnic RSVP"
+- A `<form>` element containing:
+  - A `<label>` that says "Name" and a controlled text input connected to your `name` state
+  - A `<label>` that says "Email" and a controlled text input connected to your `email` state
+  - A `<button type="submit">` with the label "Add Guest"
+- Below the form, two `<p>` tags that display the current values of `name` and `email`
 
 Save the file. You should see a form with two inputs and a button. Type in both fields — you should see the values appear below the form as you type.
+
+> **Gotcha:** Each input needs its own `value` and `onChange`. If you connect both inputs to `name`, they will both update the same variable and mirror each other.
 
 ---
 
@@ -193,56 +153,31 @@ This part has several steps. Work through them one at a time.
 
 ### Step 3.1 — Add a guests list to state
 
-Add a third state variable at the top of your `App` function:
+Add a third piece of state inside your `App` function: a variable called `guests` that starts as an empty array `[]`.
 
-```jsx
-const [guests, setGuests] = useState([])
-```
-
-This starts as an empty array. Every time someone fills out the form, you will add a new guest to this array.
+This starts empty. Every time someone submits the form, you will add a new guest to it.
 
 ---
 
 ### Step 3.2 — Write the submit handler
 
-Add this function inside your `App` function, **above the `return`**:
+Add a function called `handleSubmit` inside your `App` function, above the `return`. It should:
+1. Stop the browser from refreshing the page — this must be the very first line
+2. Create a new object for the guest with three fields: `id`, `name`, and `email`. For `id`, use `Date.now()` — this gives a unique number based on the current time.
+3. Add the new guest to the `guests` array in state — create a new array that includes all the old guests plus the new one
+4. Clear both input fields by setting `name` and `email` back to empty strings
 
-```jsx
-const handleSubmit = (e) => {
-  e.preventDefault()
-
-  const newGuest = {
-    id: Date.now(),
-    name: name,
-    email: email,
-  }
-
-  setGuests([...guests, newGuest])
-
-  setName('')
-  setEmail('')
-}
-```
-
-**What each line does:**
-
-- `e.preventDefault()` — stops the browser from refreshing the page. Forms try to do this by default. This must always be the first line.
-- `const newGuest = { ... }` — creates a new object with the name and email the user typed. `Date.now()` gives it a unique id number.
-- `setGuests([...guests, newGuest])` — creates a new array that includes all the old guests plus the new one.
-- `setName('')` and `setEmail('')` — clears both input fields after submitting.
-
-> **Why `[...guests, newGuest]` and not `guests.push(newGuest)`?**
-> In React you cannot change state directly. `push` changes the existing array. Instead, you create a brand new array with all the old items (`...guests`) plus the new one (`newGuest`). React sees the new array and updates the screen.
+> **Why `e.preventDefault()`?** By default, submitting a form causes the browser to reload the page. This would wipe out your React state. Calling `e.preventDefault()` blocks that reload. Your submit handler receives an event object — call this method on it.
+>
+> **Why not `guests.push(newGuest)`?** In React you cannot change state directly. `push` changes the existing array. Instead, create a brand new array that includes all the old items plus the new one. The spread operator can help: `[...guests, newGuest]` creates a new array with everything in `guests` followed by `newGuest`.
+>
+> **Gotcha:** Clear the inputs after calling `setGuests`, not before. If you clear them first, the values will be gone when you try to build the new guest object.
 
 ---
 
 ### Step 3.3 — Connect the handler to the form
 
-Update your `<form>` opening tag to call `handleSubmit` when the form is submitted:
-
-```jsx
-<form onSubmit={handleSubmit}>
-```
+Update your `<form>` so that it calls `handleSubmit` when submitted.
 
 Save the file. Fill in both fields and click "Add Guest". The form should clear. (You cannot see the guests yet — that is the next step.)
 
@@ -250,18 +185,14 @@ Save the file. Fill in both fields and click "Add Guest". The form should clear.
 
 ### Step 3.4 — Display the guest list
 
-Below the form and above the closing `</div>`, add this:
-
-```jsx
-<h2>Guest List</h2>
-{guests.map((guest) => (
-  <div key={guest.id}>
-    <p>{guest.name} — {guest.email}</p>
-  </div>
-))}
-```
+Below the form, add a section that:
+- Shows an `<h2>` that says "Guest List"
+- Uses `.map()` to display each guest — show their name and email on the same line
+- Gives each item a `key` using the guest's `id`
 
 Save the file. Submit the form a few times with different names and emails. Each guest should appear in the list. The form should clear after every submission.
+
+> **Gotcha:** Make sure the `.map()` is inside your `return`. JSX that lives outside the `return` will not appear on screen.
 
 ---
 
@@ -277,33 +208,24 @@ Save the file. Submit the form a few times with different names and emails. Each
 
 ### Step 4.1 — Write the removeGuest function
 
-Add this function inside your `App` function, above the `return`:
+Add a function called `removeGuest` inside your `App` function, above the `return`. It should:
+- Accept one argument: the `id` of the guest to remove
+- Use `.filter()` to create a new array that includes every guest except the one with that `id`
+- Call `setGuests` with the result
 
-```jsx
-const removeGuest = (id) => {
-  const updatedGuests = guests.filter((guest) => guest.id !== id)
-  setGuests(updatedGuests)
-}
-```
-
-> `filter` goes through every guest and keeps only the ones where `guest.id !== id`. The guest you clicked to remove does not pass that check, so it gets left out of the new array.
+> **What is `.filter()`?** It goes through every item in an array and keeps only the ones that pass a test you write. Items that fail the test are left out of the new array.
+>
+> **Hint:** Your test should keep guests whose `id` does not match the one you want to remove.
 
 ---
 
 ### Step 4.2 — Add a Remove button to each guest
 
-Update your guest list display to include a button:
-
-```jsx
-{guests.map((guest) => (
-  <div key={guest.id}>
-    <p>{guest.name} — {guest.email}</p>
-    <button onClick={() => removeGuest(guest.id)}>Remove</button>
-  </div>
-))}
-```
+Update your guest list display to include a `<button>` next to each guest that, when clicked, calls `removeGuest` with that guest's `id`.
 
 Save the file. Add a few guests, then click Remove. Each button should remove only that guest.
+
+> **Gotcha:** Same as before — do not call the function immediately. Use an arrow function in `onClick` so it only runs when clicked: `onClick={() => removeGuest(guest.id)}`.
 
 ---
 
@@ -327,46 +249,27 @@ In your `src` folder, create a new file called `GuestList.jsx`.
 
 ### Step 5.2 — Write the GuestList component
 
-Open `GuestList.jsx` and write this:
+Open `GuestList.jsx`. Write a component called `GuestList` that:
+- Accepts two props: the `guests` array and a function to remove a guest (name it `onRemove`)
+- If the `guests` array is empty, returns a `<p>` that says "No guests yet. Be the first to RSVP!"
+- Otherwise, displays each guest with their name, email, and a Remove button that calls `onRemove` with the guest's `id`
+- Is exported as the default export
 
-```jsx
-export default function GuestList({ guests, onRemove }) {
-
-  if (guests.length === 0) {
-    return <p>No guests yet. Be the first to RSVP!</p>
-  }
-
-  return (
-    <div>
-      {guests.map((guest) => (
-        <div key={guest.id}>
-          <p>{guest.name} — {guest.email}</p>
-          <button onClick={() => onRemove(guest.id)}>Remove</button>
-        </div>
-      ))}
-    </div>
-  )
-}
-```
+> **Hint:** You can return early from a component. If `guests.length === 0`, return the empty-state message right away. Otherwise, fall through to the full list.
+>
+> **Gotcha:** You need two separate returns — one for the empty case, one for the list. React will use whichever one runs first.
 
 ---
 
 ### Step 5.3 — Use GuestList in App
 
-Open `App.jsx`. At the top, import the new component:
+Open `App.jsx`:
+1. Import `GuestList` at the top of the file.
+2. Replace the guest list section in your `return` with the `<GuestList />` component. Pass it the `guests` array and the `removeGuest` function as props.
 
-```js
-import GuestList from './GuestList'
-```
+Save the file. Everything should work exactly the same as before. The only change is that the display logic now lives in its own file.
 
-Then replace the guest list section in your `return` with this:
-
-```jsx
-<h2>Guest List</h2>
-<GuestList guests={guests} onRemove={removeGuest} />
-```
-
-Save the file. Everything should work exactly the same as before. The page behavior should not change — you only moved the code into a separate component.
+> **Gotcha:** If the Remove button stops working, check that you are passing `removeGuest` as a prop to `GuestList` and that `GuestList` is calling that prop — not a function it defined itself.
 
 ---
 
@@ -395,7 +298,7 @@ Only start these after everything above is working.
 
 - [ ] Add a counter above the guest list that shows how many guests have RSVP'd. It should update when guests are added or removed.
 - [ ] Add basic validation: do not add a guest if the name field is empty. Show a message that says "Name is required" if the user tries to submit with an empty name.
-- [ ] Add a `<select>` dropdown to the form with options: `"None"`, `"Vegetarian"`, `"Vegan"`, `"Gluten-Free"`. Display the selection on each guest card.
+- [ ] Add a `<select>` dropdown to the form with options: `"None"`, `"Vegetarian"`, `"Vegan"`, `"Gluten-Free"`. Display the meal preference on each guest card.
 - [ ] Disable the "Add Guest" button if the name field is empty.
 
 ---
@@ -406,7 +309,7 @@ Only start these after everything above is working.
 |---|---|
 | Typing in the input does nothing | Does your input have both `value` and `onChange`? |
 | Page refreshes when you submit | Is `e.preventDefault()` the first line in your submit handler? |
-| Guest does not appear after submit | Is `setGuests` being called with a new array? |
+| Guest does not appear after submit | Is `setGuests` being called with a new array (not `push`)? |
 | Form does not clear after submit | Are you calling `setName('')` and `setEmail('')` after `setGuests`? |
 | Remove button removes the wrong guest | Are you passing `guest.id` to `removeGuest`, not the whole object? |
-| Blank page | Check the browser console for an error message. |
+| Blank page | Open the browser console and read the error message. |
