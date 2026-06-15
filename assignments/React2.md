@@ -43,9 +43,29 @@ npm run dev
 
 Open the link in your browser (usually `http://localhost:5173`). You should see the default Vite + React page.
 
-**Before you write any code, clean up the template:**
-1. Open `src/App.jsx` — delete everything inside it.
-2. Open `src/App.css` — delete everything inside it.
+**Before you write any code, do this cleanup:**
+
+Vite fills these files with a demo to show the tool is working. You are going to replace them with your own app.
+
+1. Open `src/App.jsx` — select all the text and delete it.
+2. Open `src/App.css` — select all the text and delete it if you want to reset the styles.
+
+Then paste this starter into `src/App.jsx`:
+
+```jsx
+import { useState } from 'react'
+import './App.css'
+
+export default function App() {
+  return (
+    <div>
+
+    </div>
+  )
+}
+```
+
+Save the file. Your browser should show a blank white page with no errors. That means your starter is working.
 
 > If your terminal shows an error, ask your instructor before moving on. Do not spend more than 10 minutes on setup.
 
@@ -59,19 +79,15 @@ Before building the full form, you are going to practice with one input first. T
 
 ---
 
-### Step 1.1 — Write a basic App component
+### Step 1.1 — Add state and a heading
 
-Open `src/App.jsx`. Write a component called `App` that:
-- Imports `useState` from `'react'`
-- Creates one piece of state: a variable called `name` that starts as an empty string `''`
-- Returns a `<div>` with an `<h1>` that says "RSVP Practice" and a plain `<input type="text" />`
-- Is exported as the default export
+Your starter file is already set up. Now add to it:
+- Inside the `App` function, above the `return`, create one piece of state: a variable called `name` that starts as an empty string `''`
+- Inside the `return`, add an `<h1>` that says "RSVP Practice" and a plain `<input type="text" />`
 
 Save the file. You should see a heading and an empty text box in the browser.
 
 Try typing in the text box. It works — but React does not know what you are typing yet. That is what you will fix next.
-
-> **Gotcha:** If your page is blank, check: does your component name start with a capital letter? Is it the default export?
 
 ---
 
@@ -255,9 +271,9 @@ Open `GuestList.jsx`. Write a component called `GuestList` that:
 - Otherwise, displays each guest with their name, email, and a Remove button that calls `onRemove` with the guest's `id`
 - Is exported as the default export
 
-> **Hint:** You can return early from a component. If `guests.length === 0`, return the empty-state message right away. Otherwise, fall through to the full list.
+> **Hint:** A component can have more than one `return` statement. Write an `if` check at the top — if `guests.length === 0`, return the empty message. If that condition is not true, JavaScript keeps going and hits the second `return` with the full list.
 >
-> **Gotcha:** You need two separate returns — one for the empty case, one for the list. React will use whichever one runs first.
+> **Gotcha:** Make sure the empty-state check comes before the full list. JavaScript stops at the first `return` it reaches.
 
 ---
 

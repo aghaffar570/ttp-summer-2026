@@ -48,22 +48,23 @@ You should see a page that says "Vite + React". That means your project is worki
 
 **Before you write any code, do this cleanup:**
 
-1. Open the file `src/App.jsx` in your code editor.
-2. Select all the text inside it and delete it. The file should now be completely empty.
-3. Open the file `src/App.css`.
-4. Select all the text inside it and delete it.
+Vite fills these files with a demo to show the tool is working. You are going to replace them with your own app.
+
+1. Open `src/App.jsx` — select all the text and delete it.
+2. Open `src/App.css` — select all the text and delete it if you want to reset the styles.
 
 > **If your terminal shows an error after `npm create vite`, stop and ask your instructor.** Setup problems are normal and your instructor can fix them quickly. Do not spend more than 10 minutes on setup — it is not the point of this assignment.
 
 ---
 
-## Your Starting Data
+## Your Starter File
 
-Copy this code and paste it at the top of `src/App.jsx`.
+Paste this into `src/App.jsx`. This gives you the movie data and the basic structure of your component. You will build everything inside it.
 
-This is the list of movies your app will display. You do not need to change this.
+```jsx
+import { useState } from 'react'
+import './App.css'
 
-```js
 const initialMovies = [
   { id: 1, title: "The Matrix",                         genre: "Sci-Fi",    year: 1999, watched: false },
   { id: 2, title: "Parasite",                           genre: "Thriller",  year: 2019, watched: false },
@@ -72,9 +73,19 @@ const initialMovies = [
   { id: 5, title: "Coco",                               genre: "Animation", year: 2017, watched: true  },
   { id: 6, title: "Get Out",                            genre: "Horror",    year: 2017, watched: false },
 ]
+
+export default function App() {
+  return (
+    <div>
+
+    </div>
+  )
+}
 ```
 
-Each movie has five pieces of information: `id`, `title`, `genre`, `year`, and `watched`.
+Save the file. Your browser should show a blank white page with no errors. That means your starter is working.
+
+Each movie has five pieces of information: `id`, `title`, `genre`, `year`, and `watched`. You do not need to change any of this.
 
 ---
 
@@ -82,21 +93,17 @@ Each movie has five pieces of information: `id`, `title`, `genre`, `year`, and `
 
 **New ideas in this part:** `useState`, writing a component, `.map()`
 
-### Step 1.1 — Write the App component
+### Step 1.1 — Add state and a heading
 
-Below the movie data you pasted, write a function called `App`. It should:
-- Import `useState` from `'react'` at the top of the file
-- Use `useState` to store the `initialMovies` array as state — name the state variable `movies`
-- Return a `<div>` that contains an `<h1>` with the text "Movie Night"
-- Export the function as the default export
+Inside your `App` function, above the `return`, use `useState` to store the movie list as state. Name the state variable `movies`.
 
-Save the file. Go to your browser. You should see the words **Movie Night** on the page.
+Then inside the `return`, add an `<h1>` that says "Movie Night".
 
-> **What is `useState`?** It is a React tool that lets your component remember data. When that data changes, React automatically updates what the user sees on screen. It gives you two things: the current value, and a function to change it.
+Save the file. You should see the words **Movie Night** on the page.
+
+> **What is `useState`?** It is a React tool that lets your component remember data. When that data changes, React automatically updates what the user sees on screen. It gives you two things: the current value (`movies`) and a function to update it (`setMovies`).
 >
-> **Hint:** `useState` takes a starting value as its argument. What is your starting movie list called?
->
-> **Gotcha:** If your page is blank, check two things: does your function name start with a capital letter? Does the file have `export default` in front of the function name?
+> **Hint:** `useState` takes a starting value. Your starting value is the movie list — `initialMovies`.
 
 ---
 
@@ -201,9 +208,7 @@ Open `App.jsx`. Inside your `App` function, above the `return`, write a function
 - Use `.map()` to go through the `movies` array
 - For the movie whose `id` matches the argument, return a copy of it with `watched` flipped to the opposite value (`true` becomes `false`, `false` becomes `true`)
 - For all other movies, return them unchanged
-- Call `setMovies` with the result
-
-Then call `setMovies` with the updated array.
+- Call `setMovies` with the updated array
 
 > **Why can't you just do `movie.watched = !movie.watched`?**
 > In React, you are not allowed to change state directly. If you do, React does not know anything changed and the screen will not update. You must always create a new value and pass it to the setter function.
@@ -254,9 +259,9 @@ In `App.jsx`, above the `return`, calculate these three values from the `movies`
 
 Click a toggle button — the numbers should update automatically without any extra code.
 
-> **Hint:** `array.length` gives you the count of items. `array.filter(...)` returns a new array with only the items that match a condition. Chain `.length` onto `filter` to get a count.
+> **Hint:** `array.length` gives you the count of items in an array. `array.filter(...)` gives you a new array with only the items that match a condition — write `.length` right after it to count how many passed.
 >
-> **Why don't these need their own `useState`?** They are calculated directly from `movies`. Every time `movies` changes, React re-runs `App` and recalculates them. Storing them in state would be redundant.
+> **Why don't these need their own `useState`?** They are calculated directly from `movies`. Every time `movies` changes, React re-runs `App` and recalculates them. You do not need to store them separately.
 
 ---
 
