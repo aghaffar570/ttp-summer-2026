@@ -88,7 +88,7 @@ Off June 19 – JUNETEENTH
 [react-slides]: ./slides/REACT.pdf
 [fullstack-api-slides]: ./slides/APIs-Express-CRUD.pdf
 [react-demo-1]: https://youtu.be/b9G78xADEbY
-[react-demo-2]: https://youtu.be/b9G78xADEbY](https://youtu.be/jsCbwab5s7E
+[react-demo-2]: https://youtu.be/jsCbwab5s7E
 [checkpoint-review]: https://youtu.be/2dxwdXq_dvc
 
 ---
