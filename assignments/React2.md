@@ -13,14 +13,15 @@ By the end of this assignment you will have practiced:
 
 ## Working in Groups
 
-You will work together on one screen — one person types, the other reads along and helps catch mistakes. Switch who is typing at each checkpoint.
+You will work together — one person types, the other reads along, helps catch mistakes, and checks the browser. Switch who is typing at each checkpoint.
 
-One person creates the GitHub repository and adds the other as a collaborator:
+Each of you should finish with your own complete project on your own GitHub account — not just access to your partner's repo:
 
-1. The repo owner goes to the repository on GitHub, then **Settings → Collaborators → Add people**.
-2. The collaborator accepts the invite from their email or GitHub notifications.
+1. Each person runs the Step 0 setup on their own laptop and creates their own GitHub repository.
+2. Work through each part together on one screen — talk through what the code should do before typing it.
+3. At each checkpoint, copy the agreed-on code into both laptops, not just the one you were typing on. Each person saves, commits, and pushes to their own repository.
 
-Both people should be looking at the screen at all times. The person not typing should be reading the instructions out loud, checking the browser, and catching errors.
+Both people should be looking at the screen at all times while building. The person not typing should be reading the instructions out loud, checking the browser, and catching errors.
 
 ---
 
@@ -40,6 +41,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+> **Leave this running.** `npm run dev` starts a local server that keeps your page live in the browser. It needs to keep running in that terminal the whole time you are working — do not close the terminal or press `Ctrl+C`, or your page will stop loading. If you ever need to stop it on purpose, `Ctrl+C` in that terminal is how, and `npm run dev` starts it again.
 
 Open the link in your browser (usually `http://localhost:5173`). You should see the default Vite + React page.
 
@@ -68,6 +71,18 @@ export default function App() {
 Save the file. Your browser should show a blank white page with no errors. That means your starter is working.
 
 > If your terminal shows an error, ask your instructor before moving on. Do not spend more than 10 minutes on setup.
+
+---
+
+## Before You Start: If You Didn't Finish Movie Night
+
+This assignment is brand new — today's main topic is **forms**, which you have not touched before. You do not need a finished Movie Night app to succeed today.
+
+There are two ideas from Movie Night that come back later in this assignment:
+- `.map()` to display a list, with a `key` on each item
+- Components and props (passing data from one file to another)
+
+If you didn't get to those parts, don't worry — you will get a quick reminder right when they show up again. If you get stuck on them, ask your partner or your instructor. The important new skill today is the form, and that does not depend on finishing Movie Night.
 
 ---
 
@@ -206,6 +221,8 @@ Below the form, add a section that:
 - Uses `.map()` to display each guest — show their name and email on the same line
 - Gives each item a `key` using the guest's `id`
 
+> **Reminder from Movie Night:** `.map()` goes through every item in an array and returns a piece of JSX for each one. Every item it returns needs a `key` prop — here, use `guest.id`. If you skipped this part of Movie Night, this is the same pattern, just with guests instead of movies.
+
 Save the file. Submit the form a few times with different names and emails. Each guest should appear in the list. The form should clear after every submission.
 
 > **Gotcha:** Make sure the `.map()` is inside your `return`. JSX that lives outside the `return` will not appear on screen.
@@ -245,51 +262,17 @@ Save the file. Add a few guests, then click Remove. Each button should remove on
 
 ---
 
-**Checkpoint 4:** Each guest has a Remove button that removes only that guest from the list. ✓
+### Step 4.3 — Show a message when there are no guests
+
+Remove every guest using your new buttons until the list is empty. Look at the page — there is no error, but there is also no list and no message. That is because `.map()` on an empty array simply renders nothing.
+
+Above your `.map()`, add a check: if `guests.length` is `0`, show a `<p>` that says "No guests yet. Be the first to RSVP!" instead of the list.
+
+> **Hint:** This is the same kind of `if` check you used in Movie Night to decide between "Watched" and "Not watched yet" — you are just deciding between two different things to show.
 
 ---
 
-## Part 5 — GuestList Component
-
-**New ideas in this part:** moving display logic into a separate component
-
-Right now all your code is in one file. In this part, you will move the guest list display into its own component.
-
----
-
-### Step 5.1 — Create the file
-
-In your `src` folder, create a new file called `GuestList.jsx`.
-
----
-
-### Step 5.2 — Write the GuestList component
-
-Open `GuestList.jsx`. Write a component called `GuestList` that:
-- Accepts two props: the `guests` array and a function to remove a guest (name it `onRemove`)
-- If the `guests` array is empty, returns a `<p>` that says "No guests yet. Be the first to RSVP!"
-- Otherwise, displays each guest with their name, email, and a Remove button that calls `onRemove` with the guest's `id`
-- Is exported as the default export
-
-> **Hint:** A component can have more than one `return` statement. Write an `if` check at the top — if `guests.length === 0`, return the empty message. If that condition is not true, JavaScript keeps going and hits the second `return` with the full list.
->
-> **Gotcha:** Make sure the empty-state check comes before the full list. JavaScript stops at the first `return` it reaches.
-
----
-
-### Step 5.3 — Use GuestList in App
-
-Open `App.jsx`:
-1. Import `GuestList` at the top of the file.
-2. Replace the guest list section in your `return` with the `<GuestList />` component. Pass it the `guests` array and the `removeGuest` function as props.
-
-Save the file. Everything should work exactly the same as before. The only change is that the display logic now lives in its own file.
-
-> **Gotcha:** If the Remove button stops working, check that you are passing `removeGuest` as a prop to `GuestList` and that `GuestList` is calling that prop — not a function it defined itself.
-
----
-
-**Checkpoint 5:** The app still works. GuestList is in its own file. ✓
+**Checkpoint 4:** Each guest has a Remove button that removes only that guest from the list, and an empty list shows "No guests yet. Be the first to RSVP!" ✓
 
 ---
 
@@ -303,7 +286,6 @@ Before you submit, confirm each item:
 - [ ] The form clears after submitting.
 - [ ] Clicking Remove removes only that guest.
 - [ ] When there are no guests, the message "No guests yet. Be the first to RSVP!" appears.
-- [ ] `GuestList` is in its own file: `src/GuestList.jsx`.
 - [ ] Your work is committed and pushed to GitHub.
 
 ---
@@ -312,6 +294,8 @@ Before you submit, confirm each item:
 
 Only start these after everything above is working.
 
+- [ ] **Move the guest list into its own component.** Create `src/GuestList.jsx`. Write a component called `GuestList` that accepts two props — the `guests` array and a function to remove a guest (name it `onRemove`) — and renders everything your guest-list section currently does, including the empty-state message. Import it into `App.jsx` and replace that section with `<GuestList guests={guests} onRemove={removeGuest} />`. The page should look and behave exactly the same — only the file it lives in changes.
+  > **Hint:** A component can have more than one `return` statement. Write an `if` check at the top — if `guests.length === 0`, return the empty message. If that condition is not true, JavaScript keeps going and hits the second `return` with the full list.
 - [ ] Add a counter above the guest list that shows how many guests have RSVP'd. It should update when guests are added or removed.
 - [ ] Add basic validation: do not add a guest if the name field is empty. Show a message that says "Name is required" if the user tries to submit with an empty name.
 - [ ] Add a `<select>` dropdown to the form with options: `"None"`, `"Vegetarian"`, `"Vegan"`, `"Gluten-Free"`. Display the meal preference on each guest card.
