@@ -78,7 +78,7 @@ Off June 19 – JUNETEENTH
 | Topic        | Assignment        | Lecture | Slides                      | Demo |
 | ------------ | ----------------- | ------- | --------------------------- | ---- |
 | React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | [📽️][react-demo-1] [[📽️ checkpoint]][checkpoint-review]    |
-| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | -    |
+| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | 📽️][react-demo-2]    |
 | API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | -    |
 
 
@@ -88,6 +88,7 @@ Off June 19 – JUNETEENTH
 [react-slides]: ./slides/REACT.pdf
 [fullstack-api-slides]: ./slides/APIs-Express-CRUD.pdf
 [react-demo-1]: https://youtu.be/b9G78xADEbY
+[react-demo-2]: [https://youtu.be/b9G78xADEbY](https://youtu.be/jsCbwab5s7E)
 [checkpoint-review]: https://youtu.be/2dxwdXq_dvc
 
 ---
