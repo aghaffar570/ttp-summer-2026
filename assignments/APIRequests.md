@@ -209,4 +209,3 @@ Steps:
 - Keep fetch logic in clearly named functions (`fetchUsers`, `fetchPosts`) rather than anonymous functions inside `useEffect`.
 - Never put an API key or token directly in a frontend request to a public API — anyone can read your source code. For private keys, use a backend proxy.
 - Separate data-fetching concerns from rendering concerns — components should receive data as props, not each fetch independently (this pattern scales better).
-
