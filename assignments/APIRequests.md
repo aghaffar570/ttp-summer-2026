@@ -1,34 +1,20 @@
-# Assignment 06: API Requests — Users & Posts Explorer
+# Assignment 06: API Requests — Users Directory
 
 ## Goal
 
-Build a React app that fetches real data from a public API and displays it — practicing `useEffect`, `axios`, async/await, loading states, and making a second fetch based on user interaction.
+Get a list of users from the internet and show them on the page.
 
-## Objectives
+## Why This Matters
 
-You will practice:
+Up to now, you typed your data right into your code, like the movie list. Real apps do not do that. They ask another computer (called a **server**) for data. The server sends the data back. This takes a moment. We need a way to wait for it, and then update the page when it arrives. That is what this assignment teaches.
 
-- Making HTTP GET requests with `axios`.
-- Using `useEffect` to fetch data after a component mounts.
-- Managing loading and error states.
-- Making a second fetch triggered by a user action.
-- Rendering data from an API response.
-- Understanding the Promises model and `async/await`.
 
-## Problem
+## Resource
 
-Build a **Users & Posts Explorer** using [JSONPlaceholder](https://jsonplaceholder.typicode.com/) — a free public API that returns realistic fake data. This same request/response pattern is exactly what you'll use once you build your own backend.
+fetch:
+- https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch
+- https://javascript.info/fetch
 
-You'll display a list of users. When a user is clicked, fetch and display all of their posts.
-
-Scaffold the project:
-
-```bash
-npm create vite@latest posts-explorer -- --template react
-cd posts-explorer
-npm install axios
-npm run dev
-```
 
 **API Endpoints (no key required):**
 
@@ -37,67 +23,159 @@ npm run dev
 | `https://jsonplaceholder.typicode.com/users` | Array of 10 users |
 | `https://jsonplaceholder.typicode.com/posts?userId=1` | Posts for user 1 |
 
-## Assignment Tasks
 
-### Part 1: Fetch Users on Mount
 
-- [ ] In `App.jsx`, add three state variables: `users` (array, default `[]`), `loading` (boolean, default `true`), and `error` (default `null`).
-- [ ] Write an async function `fetchUsers` that uses `axios.get` to fetch `https://jsonplaceholder.typicode.com/users` and sets `users` with `response.data`.
-- [ ] Wrap the fetch in a `try/catch` — on error, set `error` to the error message.
-- [ ] Always set `loading` to `false` when the fetch finishes (success or failure) — use a `finally` block.
-- [ ] Call `fetchUsers` inside a `useEffect` with an empty dependency array.
-- [ ] While loading, render `<p>Loading users...</p>`.
-- [ ] If there's an error, render `<p>Error: {error}</p>`.
-- [ ] Otherwise, render a list of user names.
+## Setup
 
-### Part 2: UserList Component
+```bash
+npm create vite@latest users-directory -- --template react
+cd users-directory
+npm run dev
+```
 
-Create `src/components/UserList.jsx`.
+Open `App.jsx`. Delete everything inside it. Delete everything inside `App.css` too. You will write all new code.
 
-- [ ] Receives `users` and `onSelectUser` as props.
-- [ ] Renders each user as a clickable `<li>` or `<button>`.
-- [ ] Displays each user's `name` and `email`.
-- [ ] Calls `onSelectUser(user)` when a user is clicked.
-- [ ] Visually highlights the selected user (add a CSS class or inline style).
+We will get data from this address:
 
-### Part 3: Select a User and Fetch Their Posts
+```
+https://jsonplaceholder.typicode.com/users
+```
 
-- [ ] In `App`, add `selectedUser` state (default `null`) and `posts` state (default `[]`).
-- [ ] Write a function `handleSelectUser(user)` that sets `selectedUser` to the chosen user.
-- [ ] Write an async function `fetchPosts(userId)` that fetches `https://jsonplaceholder.typicode.com/posts?userId=${userId}` and sets `posts`.
-- [ ] Use a second `useEffect` that runs `fetchPosts(selectedUser.id)` whenever `selectedUser` changes. Make sure it only runs when `selectedUser` is not `null`.
-- [ ] Pass `handleSelectUser` to `<UserList>` as `onSelectUser`.
+It gives back a list of 10 fake users.
 
-### Part 4: PostList Component
+---
 
-Create `src/components/PostList.jsx`.
+## Part 1: Run Code One Time, When the Page Opens
 
-- [ ] Receives `selectedUser` and `posts` as props.
-- [ ] If `selectedUser` is `null`, renders `<p>Select a user to see their posts.</p>`.
-- [ ] Otherwise renders the selected user's name as a heading and their posts below it.
-- [ ] Each post displays its `title` and `body`.
-- [ ] Shows a post count: `"X posts by [name]"`.
+**Why:** Right now, all your code runs every time the page updates. We only want to fetch data one time, the moment the page opens. **`useEffect`** is a tool that runs code one time.
 
-### Part 5: Layout and Polish
+Steps:
 
-- [ ] Lay the `UserList` and `PostList` side by side using CSS flexbox or grid.
-- [ ] Add a loading state specifically for posts (`postsLoading`) so the post panel shows `"Loading posts..."` while fetching.
-- [ ] Add a `"Clear selection"` button that sets `selectedUser` and `posts` back to their default values.
+- [ ] Open `App.jsx`.
+- [ ] At the top, import `useEffect` next to `useState`.
+- [ ] Inside your `App` function, call `useEffect`.
+- [ ] Give `useEffect` a function. Inside that function, write one line: `console.log("page loaded")`.
+- [ ] After that function, add an empty array: `[]`. This empty array is the second argument passed in useEffect and it tells React "only run one time."
+- [ ] Save the file. Open your browser console. Refresh the page.
+
+**Check it:** "page loaded" should show in the console. It should show up only one time, not many times.
+
+---
+
+## Part 2: Get the Real Data
+
+**Why:** Now you can run code one time when the page opens. This is the moment to ask the server for data. Right now, do not worry about what shows on the page — just focus on getting the data and saving it. It is okay if the page stays blank for this part.
+
+Steps:
+
+- [ ] Add a state variable called `users`. Start it as an empty array: `useState([])`.
+- [ ] Inside `useEffect`, write a new function called `fetchUsers`. Make it `async`. (**`async`** means this function is allowed to pause and wait for something, like an answer from the internet.)
+- [ ] Inside `fetchUsers`, use `fetch` to ask for the address above.
+- [ ] Put `await` in front of `fetch`. (**`await`** means "wait here for the answer before moving to the next line."). Remember we want the data returned in json format.
+- [ ] Update our state `users`, using `setUsers`.
+- [ ] Right after you write `fetchUsers` function, call it within useEffect: `fetchUsers()`.
+
+A small note: the function you hand to `useEffect` cannot be `async` itself. That is why we write a second function (`fetchUsers`) inside it. See **Common Gotchas** below for the exact code if this part feels confusing.
+
+**Check it:** Inside `fetchUsers`, add `console.log(response.data)`. Open your console. You should see a list of 10 users. The page itself can still be blank — that is expected.
+
+---
+
+## Part 3: Show the Data on the Page
+
+**Why:** You already know how to turn a list into HTML. You did this with the movie list, using `.map()` and a component. Now you will do the exact same thing, but with data that came from the internet.
+
+Steps:
+
+- [ ] Make a new component called `UserCard`.
+- [ ] `UserCard` should take one prop, called `user`.
+- [ ] Inside `UserCard`, show `user.name` and `user.email`.
+- [ ] Back in `App`, use `.map()` on `users`. For each user, render a `UserCard`.
+- [ ] Give each `UserCard` a `key`. Use the user's `id`.
+
+**Check it:** Refresh the page. You should see 10 user cards. You may notice the page is blank for a split second before they appear — we will fix that next.
+
+---
+
+## Part 4: Add a Loading Message
+
+**Why:** Right now there is a short, awkward moment where the page is blank while the data is still on its way. We can use a second state variable to show a friendly message during that wait, instead of leaving the page looking broken or empty.
+
+Steps:
+
+- [ ] Add a state variable called `loading`. Start it as `true`.
+- [ ] Inside `fetchUsers`, right after you call `setUsers`, set `loading` to `false` using `setLoading`.
+- [ ] Back in `App`, check if `loading` is `true`. If it is, render some JSX with "Loading users..." instead of the list.
+- [ ] If `loading` is `false`, show the list of `UserCard`s like you already built in Part 3.
+
+**Check it:** Refresh the page. You should briefly see "Loading users...", then the 10 user cards — no more blank flash in between.
+
+---
 
 ## Common Gotchas
 
-- Calling `axios.get` directly in the component body (outside `useEffect`) causes an **infinite loop** — every state update triggers a re-render, which triggers a fetch, which triggers a state update.
-- `axios` returns the data at `response.data`. `fetch` returns a Response object — you have to call `await response.json()` to get the data.
-- `useEffect` with no dependency array runs after **every** render. An empty `[]` array runs only once on mount.
-- The `useEffect` callback cannot itself be `async`. Define the async function inside the effect and call it immediately:
+- The callback function you pass to `useEffect` cannot be `async`. Write a second function inside it, and call that one instead. Like this:
   ```js
-  useEffect(() => {
-    const load = async () => { ... };
-    load();
-  }, []);
+  useEffect(() => { // this function cannot be async
+
+    // that is why we write our own async function here:
+    const fetchUsers = async () => {
+      const response = await fetch("https://jsonplaceholder.typicode.com/users")
+      const data = await response.json()
+      setUsers(data)
+      setLoading(false)
+    }
+    fetchUsers()
+  }, [])
   ```
-- Don't forget `selectedUser` in the second `useEffect`'s dependency array, or the linter will warn you and you may see stale data.
-- If you see `"Cannot read properties of null"` — your component tried to read a property on `selectedUser` before it was set. Guard with `selectedUser &&`.
+- Do not call `fetch` outside of `useEffect`. If you do, it will run forever, over and over.
+
+## Stretch Challenges
+
+Only try these after Parts 1–4 work. Try them in this order:
+
+- [ ] Add an `error` state variable. Wrap your fetch in `try/catch`. If it fails, show an error message.
+- [ ] Let someone click a `UserCard`. When they click it, fetch that user's posts. You may need to refer to the documentation on how to fetch the particular user: https://jsonplaceholder.typicode.com/ (check guide for user endpoints)
+- [ ] Move your list code out of `App`. Put it in its own `UserList` component.
+- [ ] Add a search box. Type a name, and only matching users show up.
+
+## How to Submit Your Work
+
+**Why:** So far you have only cloned repos that already existed on GitHub. This time, you started a brand new project on your computer first. So we need a few new steps to connect it to a brand new, empty repo on GitHub.
+
+Steps:
+
+- [ ] Open your terminal. Make sure you are inside your `users-directory` folder.
+- [ ] Run `git init`. This turns your folder into a git project. (You only do this once, at the start.)
+- [ ] Run `git add .`
+- [ ] Run `git commit -m "complete users directory assignment"`
+- [ ] Go to [github.com](https://github.com). Click the **+** icon in the top right, then click **New repository**.
+- [ ] Name it `users-directory`. Leave every checkbox unchecked (no README, no `.gitignore`, no license). Click **Create repository**.
+- [ ] GitHub now shows you a page with a few different code blocks. Find the one titled **"…or push an existing repository from the command line."** It looks like this:
+  ```bash
+  git remote add origin https://github.com/<your-username>/users-directory.git
+  git branch -M main
+  git push -u origin main
+  ```
+- [ ] Copy those three lines exactly as GitHub shows them (they will already have your username and repo name filled in). Paste them into your terminal and press enter.
+- [ ] Refresh the GitHub page in your browser. You should now see all your files there.
+
+**Check it:** Open your repo link in the browser. Confirm you can see `App.jsx` and your `UserCard` component.
+
+**Submit:** Copy your repo's URL — it will look like `https://github.com/<your-username>/users-directory` — and submit that link.
+
+---
+
+## Finished Checklist
+
+- [ ] "page loaded" shows in the console one time.
+- [ ] The console shows the 10 users after the fetch.
+- [ ] The page shows "Loading users...", then shows 10 users — no blank flash.
+- [ ] Each user shows through a `UserCard` component.
+- [ ] No errors show in the console.
+- [ ] Your work is committed and pushed to GitHub.
+
+
 
 ## Industry Standards
 
@@ -106,24 +184,3 @@ Create `src/components/PostList.jsx`.
 - Never put an API key or token directly in a frontend request to a public API — anyone can read your source code. For private keys, use a backend proxy.
 - Separate data-fetching concerns from rendering concerns — components should receive data as props, not each fetch independently (this pattern scales better).
 
-## Stretch Challenges
-
-If you finish early:
-
-- [ ] Add a search input above the user list that filters users by name as you type.
-- [ ] Fetch a single post's comments when a post is clicked: `https://jsonplaceholder.typicode.com/comments?postId=1`.
-- [ ] Add a `"Back to users"` breadcrumb that appears when a user is selected.
-- [ ] Display each user's company name (`user.company.name`) and website (`user.website`) on the user card.
-- [ ] Cache fetched posts in an object so switching between users doesn't re-fetch if you've already loaded their posts.
-
-## Finished Checklist
-
-Before submitting, verify:
-
-- [ ] The app loads and displays 10 users without errors.
-- [ ] Clicking a user fetches and displays their posts.
-- [ ] Loading states appear during both fetches.
-- [ ] Clicking a second user updates the post panel.
-- [ ] The "Clear selection" button resets the view.
-- [ ] The console shows no unhandled Promise rejections.
-- [ ] Your work has been committed and pushed to GitHub.
