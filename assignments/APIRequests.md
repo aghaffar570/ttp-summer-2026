@@ -33,7 +33,33 @@ cd users-directory
 npm run dev
 ```
 
-Open `App.jsx`. Delete everything inside it. Delete everything inside `App.css` too. You will write all new code.
+**Before you write any code, do this cleanup:**
+
+Vite fills these files with a demo to show the tool is working. You are going to replace them with your own app.
+
+1. Open `src/App.jsx` — select all the text and delete it.
+2. Open `src/App.css` — select all the text and delete it if you want to reset the styles.
+
+Then paste this starter into `src/App.jsx`:
+
+```jsx
+import { useState } from 'react'
+import './App.css'
+
+export default function App() {
+  return (
+    <div>
+
+    </div>
+  )
+}
+```
+
+Save the file. Your browser should show a blank white page with no errors. That means your starter is working.
+
+> If your terminal shows an error, ask your instructor before moving on. Do not spend more than 10 minutes on setup.
+
+---
 
 We will get data from this address:
 
