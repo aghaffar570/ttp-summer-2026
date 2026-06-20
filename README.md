@@ -79,7 +79,7 @@ Off June 19 – JUNETEENTH
 | ------------ | ----------------- | ------- | --------------------------- | ---- |
 | React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | [📽️ react-1][react-demo-1] [[📽️ checkpoint-review]][checkpoint-review]    |
 | React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | [📽️ react-2][react-demo-2]  [📽️ movie-list-review][movie-solution]  |
-| API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | -    |
+| API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | [📽️ react-rsvp-review][react-rsvp-review]   [📽️ api-&-fetch][api-&-fetch] |
 
 
 [react1-asst]: ./assignments/React.md
@@ -91,6 +91,8 @@ Off June 19 – JUNETEENTH
 [react-demo-2]: https://youtu.be/jsCbwab5s7E
 [checkpoint-review]: https://youtu.be/2dxwdXq_dvc
 [movie-solution]: https://youtu.be/Wivrqg9sMzg
+[react-rsvp-review]: https://youtu.be/AkJQaJIGTPU
+[api-&-fetch]: https://youtu.be/He-N09eukAg
 
 ---
 
