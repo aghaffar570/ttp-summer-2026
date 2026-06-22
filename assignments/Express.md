@@ -2,47 +2,33 @@
 
 ## Goal
 
-Build a fully working REST API with Express using in-memory data — practicing route definitions, reading the request, sending responses, and using Postman to test every endpoint before a frontend ever exists.
+Build your first server. It will answer requests for a list of books — adding one, changing one, and deleting one — all before any frontend exists.
 
-## Objectives
+## Why This Matters
 
-You will practice:
+So far, your code has run in the browser. The browser is the **client** — it asks for things. Today you build the **server** — the computer that answers. A **server** is a program that waits for requests and sends back responses. **Express** is a tool that makes building a server in Node much faster.
 
-- Setting up an Express server from scratch.
-- Defining routes for all five CRUD operations.
-- Reading data from `req.params`, `req.body`, and `req.query`.
-- Sending the correct status codes and response bodies.
-- Organizing routes using `express.Router()`.
-- Testing API endpoints with Postman.
-- Using middleware (`express.json()`, `cors`, `morgan`).
+You will test your server with **Postman**, a tool for sending requests without a browser. There is no frontend yet — that comes later. Today is just about the mechanics of CRUD: Create, Read, Update, Delete.
 
-## Problem
+## Resources
 
-Build a **Books API** — a REST API for a small bookstore. The data lives in memory (no database yet). You'll implement full CRUD for books, then add a second resource: reviews for each book.
+- Express docs: https://expressjs.com/en/starter/hello-world.html
+- Postman download: https://www.postman.com/downloads/
 
-Create the project folder manually (no Vite — this is a Node/Express project):
+## Setup
+
+This is a Node project, so there is no Vite step.
 
 ```bash
 mkdir books-api
 cd books-api
 npm init -y
-npm install express cors morgan
+npm install express
 ```
 
-Create this file structure:
+Create one file: `app.js`. Everything for this assignment lives in this single file.
 
-```text
-books-api/
-├── app.js
-└── api/
-    ├── index.js
-    ├── books.js
-    └── reviews.js
-```
-
-## Starter Data
-
-Add this to `api/books.js` as your in-memory store:
+Paste this at the top of `app.js`. This is your starting data — an **array**, which is just a list:
 
 ```js
 let books = [
@@ -53,128 +39,186 @@ let books = [
   { id: 5, title: "The Alchemist", author: "Paulo Coelho", genre: "Fiction", available: true },
 ];
 
-let nextId = 6; // use this for generating new ids
+let nextId = 6; // use this for any new book you create
 ```
 
-Add this to `api/reviews.js`:
+---
 
-```js
-let reviews = [
-  { id: 1, bookId: 1, reviewer: "Alice", rating: 5, comment: "Must-read for any developer." },
-  { id: 2, bookId: 1, reviewer: "Bob", rating: 4, comment: "Dense but rewarding." },
-  { id: 3, bookId: 3, reviewer: "Charlie", rating: 5, comment: "One of the best sci-fi novels ever written." },
-];
+## Part 1: Start the Server
 
-let nextReviewId = 4;
-```
+**Why:** Before writing any routes, confirm the server itself can turn on.
 
-## Assignment Tasks
+Steps:
+- [ ] Require `express`: `const express = require("express");`
+- [ ] Create the app: `const app = express();`
+- [ ] Add this line: `app.use(express.json());` — it lets your server read JSON that's sent to it. Without it, `req.body` will always be empty.
+- [ ] At the bottom, start the server: `app.listen(8080, () => console.log("Server running on port 8080"));`
+- [ ] In your terminal, run `node app.js`.
 
-### Part 1: Server Setup
+**Check it:** Your terminal shows `Server running on port 8080`.
 
-In `app.js`:
+---
 
-- [ ] Require `express`, `cors`, and `morgan`.
-- [ ] Create an Express app with `const app = express()`.
-- [ ] Register these middleware in order:
-  ```js
-  app.use(cors());
-  app.use(morgan("dev"));
-  app.use(express.json());
-  ```
-- [ ] Mount the API router: `app.use("/api", require("./api"))`.
-- [ ] Start the server on port 8080: `app.listen(8080, () => console.log("Server running on port 8080"))`.
-- [ ] Run `node app.js` and verify `"Server running on port 8080"` appears.
+## Part 2: Your First Route
 
-### Part 2: Books — GET Routes
+**Why:** A **route** is a rule: "when a request comes to this address, run this code." Write the smallest possible route first, before touching your book data.
 
-In `api/books.js`, create an `express.Router()` and implement:
+Steps:
+- [ ] Above `app.listen`, add: `app.get("/", (req, res) => res.send("Books API is running"));`
+- [ ] Stop your server (`Ctrl+C`) and run `node app.js` again. (Express does not restart itself — you must do this every time you change `app.js`.)
+- [ ] Open `http://localhost:8080` in your browser.
 
-- [ ] `GET /api/books` — respond with the full books array.
-- [ ] `GET /api/books/:id` — find the book by id. Respond with the book, or `404` if not found.
-- [ ] `GET /api/books?genre=Sci-Fi` — filter the books array by `req.query.genre` when provided. If no query param, return all books.
+**Check it:** The page shows "Books API is running".
 
-Wire up the router in `api/index.js`:
-```js
-const router = require("express").Router();
-router.use("/books", require("./books"));
-module.exports = router;
-```
+---
 
-Test all three GET routes in Postman before moving on.
+## Part 3: GET All Books
 
-### Part 3: Books — POST, PATCH, DELETE
+**Why:** This is the simplest way to read data — send back the whole list.
 
-Still in `api/books.js`:
+Steps:
+- [ ] Add: `app.get("/api/books", (req, res) => res.json(books));`
+- [ ] Restart your server.
+- [ ] Open Postman. Send a `GET` request to `http://localhost:8080/api/books`.
 
-- [ ] `POST /api/books` — read `title`, `author`, `genre` from `req.body`. Create a new book object with the next id, add it to the array, respond with `201` and the new book.
-- [ ] `PATCH /api/books/:id` — find the book by id (return `404` if not found). Update only the fields provided in `req.body` (do not replace the whole object). Respond with `200` and the updated book.
-- [ ] `DELETE /api/books/:id` — find the book by id (return `404` if not found). Remove it from the array. Respond with `204` and no body.
+**Check it:** Postman shows all 5 books as JSON.
 
-Test each route in Postman:
-- POST with a JSON body `{ "title": "Clean Code", "author": "Robert Martin", "genre": "Tech" }`.
-- PATCH with `{ "available": false }` — only that field should change.
-- DELETE a book, then GET all to confirm it's gone.
+---
 
-### Part 4: Reviews — Nested Resource
+## Part 4: GET One Book by Id
 
-In `api/reviews.js`, create a second router for reviews. Reviews belong to a book (`bookId`).
+**Why:** Now you'll read a single item using a **route parameter** — a piece of the URL itself, like the `2` in `/api/books/2`.
 
-- [ ] `GET /api/books/:bookId/reviews` — return all reviews where `review.bookId === Number(req.params.bookId)`.
-- [ ] `POST /api/books/:bookId/reviews` — read `reviewer`, `rating`, and `comment` from `req.body`. Create a new review with the next id and the correct `bookId`. Respond with `201` and the new review.
-- [ ] `DELETE /api/reviews/:id` — delete a review by its own id. Respond with `204`.
+Steps:
+- [ ] Add a new route: `app.get("/api/books/:id", (req, res) => { ... })`
+- [ ] Inside, read the id from `req.params.id`. **Important:** this value is always a string, so wrap it in `Number()` before comparing it to the ids in your array.
+- [ ] Find the matching book in the `books` array.
+- [ ] If no book matches, send back status `404` and stop (use `return`).
+- [ ] If a book matches, send it back as JSON.
+- [ ] Restart your server.
 
-Mount the reviews router in `api/index.js`:
-```js
-router.use("/books", require("./reviews")); // for /api/books/:bookId/reviews
-router.use("/reviews", require("./reviews")); // for /api/reviews/:id
-```
+**Check it:** `GET /api/books/2` returns "Educated". `GET /api/books/99` returns a `404` status.
 
-> Hint: you may need to export the reviews router with two separate paths or handle both route shapes inside the same file.
+---
 
-### Part 5: Validation and Error Handling
+## Part 5: POST a New Book
 
-- [ ] On `POST /api/books`, return `400` if `title` or `author` is missing from `req.body`.
-- [ ] On `POST /api/books/:bookId/reviews`, return `400` if `rating` is missing or is not a number between 1 and 5.
-- [ ] Wrap every route handler in a `try/catch` block that logs the error and responds with `500` on unexpected failures.
+**Why:** Now you'll let the client create something new, instead of only reading data.
+
+Steps:
+- [ ] Add: `app.post("/api/books", (req, res) => { ... })`
+- [ ] Read `title`, `author`, and `genre` from `req.body`.
+- [ ] Build a new book object. Use `nextId` for its id, then increase `nextId` by 1.
+- [ ] Add the new book to the `books` array.
+- [ ] Send back status `201` and the new book.
+- [ ] Restart your server.
+
+**Check it:** In Postman, set the body to **raw → JSON**, and send `{ "title": "Clean Code", "author": "Robert Martin", "genre": "Tech" }` to `POST /api/books`. Then `GET /api/books` and confirm 6 books are now in the list.
+
+---
+
+## Part 6: PATCH an Existing Book
+
+**Why:** `PATCH` changes only the fields you send — not the whole object.
+
+Steps:
+- [ ] Add: `app.patch("/api/books/:id", (req, res) => { ... })`
+- [ ] Find the book by id (`Number()` again). If it's not found, send `404` and stop.
+- [ ] Copy the fields from `req.body` onto the existing book, without erasing the fields you didn't send. (`Object.assign(book, req.body)` does this for you.)
+- [ ] Send back status `200` and the updated book.
+- [ ] Restart your server.
+
+**Check it:** Send `{ "available": false }` to `PATCH /api/books/1`. Only `available` should change.
+
+---
+
+## Part 7: DELETE a Book
+
+**Why:** The last CRUD action — removing something completely.
+
+Steps:
+- [ ] Add: `app.delete("/api/books/:id", (req, res) => { ... })`
+- [ ] Find the book's position in the array by id. If it's not found, send `404` and stop.
+- [ ] Remove it from the `books` array.
+- [ ] Send back status `204` with no body: `res.sendStatus(204)`.
+- [ ] Restart your server.
+
+**Check it:** Delete a book, then `GET /api/books` and confirm it's gone.
+
+---
 
 ## Common Gotchas
 
-- `req.params.id` is always a **string** — convert with `Number()` before comparing to the numeric ids in your array. `"2" === 2` is `false`.
-- `req.body` is `undefined` if you forget `app.use(express.json())`. Register this middleware **before** your routes.
-- Every route must send **exactly one** response. Forgetting `return` before `res.sendStatus(404)` often causes a "Cannot set headers after they are sent" crash.
-- `PATCH` should only update the fields sent in the request, not replace the whole object. Use spread: `Object.assign(book, req.body)` or `{ ...book, ...req.body }`.
-- `204 No Content` should have no body. `res.sendStatus(204)` does this correctly. `res.status(204).json(...)` will cause an error.
+- `req.params.id` is always a **string**. `"2" === 2` is `false` — always wrap it in `Number()` first.
+- `req.body` is `undefined` if you forget `app.use(express.json())`.
+- Every route must send back **exactly one** response. Forgetting `return` before `res.sendStatus(404)` will cause a "Cannot set headers after they are sent" crash.
+- `PATCH` should only update the fields sent in the request, not replace the whole object.
+- `204 No Content` should have no body. Use `res.sendStatus(204)`, not `res.status(204).json(...)`.
+- Forgot to restart your server after a change? Stop it (`Ctrl+C`) and run `node app.js` again.
 - In Postman, set the request body format to **raw → JSON** for POST and PATCH routes.
+
+## How to Submit Your Work
+
+Steps:
+- [ ] Open your terminal. Make sure you are inside your `books-api` folder.
+- [ ] Run `git init`.
+- [ ] Run `git add .`
+- [ ] Run `git commit -m "complete books api assignment"`
+- [ ] Go to [github.com](https://github.com). Click the **+** icon, then **New repository**.
+- [ ] Name it `books-api`. Leave every checkbox unchecked. Click **Create repository**.
+- [ ] Copy the three commands GitHub shows you under "...or push an existing repository from the command line." Paste them into your terminal and press enter.
+- [ ] Refresh the GitHub page in your browser to confirm your files are there.
+
+**Submit:** Copy your repo's URL and submit that link.
 
 ## Industry Standards
 
-- Routes should be split by resource, not grouped by HTTP method.
 - Check for required fields before touching the data store — validate at the boundary.
-- Route handlers should be thin — logic should live in helper functions or service layer, not inside the route directly (you'll see this pattern in bigger codebases).
-- Use a consistent naming convention for route files: one file per resource.
-- Use `morgan` in development for visibility — you should be able to see every request in the terminal.
+- Send back the status code that matches what happened: `200` read/updated, `201` created, `204` deleted, `404` not found, `400` bad input.
+- Real projects split routes into separate files by resource instead of one big file — you'll practice that pattern in the stretch challenges.
 
 ## Stretch Challenges
 
-If you finish early:
+Only attempt these after Parts 1–7 work and are tested in Postman. Try them roughly in this order.
 
-- [ ] Add a `GET /api/books/:id/reviews` route that returns reviews with the book data included (look up the book too).
+- [ ] **Filter by genre:** Add a query string to your GET-all route. If `req.query.genre` has a value, send back only books matching that genre. Example: `GET /api/books?genre=Sci-Fi`.
+- [ ] **Validation:** On `POST /api/books`, return `400` if `title` or `author` is missing from `req.body`.
+- [ ] **Error handling:** Wrap your route logic in `try/catch`. Log the error, and respond with `500` if something unexpected happens.
+- [ ] **Organize your code:** Right now everything is in one file. Split it up:
+  - Create an `api/` folder with `index.js` and `books.js`.
+  - Move your book routes into `api/books.js`, using `express.Router()` instead of `app`.
+  - In `api/index.js`, mount the books router.
+  - In `app.js`, mount your `api/index.js` router under `/api`, and remove the routes you moved out.
+- [ ] **Add dev middleware:** Install `cors` and `morgan`. Add `app.use(cors())` so a future frontend can talk to your server, and `app.use(morgan("dev"))` to log every request in your terminal.
+- [ ] **Reviews (a second, nested resource):** Create `api/reviews.js`. Reviews belong to a book through a `bookId` field.
+  ```js
+  let reviews = [
+    { id: 1, bookId: 1, reviewer: "Alice", rating: 5, comment: "Must-read for any developer." },
+    { id: 2, bookId: 1, reviewer: "Bob", rating: 4, comment: "Dense but rewarding." },
+    { id: 3, bookId: 3, reviewer: "Charlie", rating: 5, comment: "One of the best sci-fi novels ever written." },
+  ];
+
+  let nextReviewId = 4;
+  ```
+  - [ ] `GET /api/books/:bookId/reviews` — return all reviews where `review.bookId === Number(req.params.bookId)`.
+  - [ ] `POST /api/books/:bookId/reviews` — read `reviewer`, `rating`, `comment` from `req.body`. Create a new review with the next id and the correct `bookId`. Respond `201`.
+  - [ ] `DELETE /api/reviews/:id` — delete a review by its own id. Respond `204`.
+  - [ ] On the POST review route, return `400` if `rating` is missing or is not a number between 1 and 5.
+  - [ ] Mount this router in `api/index.js` under both `/books` and `/reviews`, since it needs to answer to both URL shapes.
+- [ ] Add `GET /api/books/:id/reviews` that also includes the book's own data, not just the reviews.
 - [ ] Add pagination to `GET /api/books` using `?page=1&limit=3` query params.
-- [ ] Add a `PATCH /api/reviews/:id` route to update a review.
-- [ ] Add a route `GET /api/books/available` that returns only books where `available` is `true`. (Hint: this route must be defined **before** `/:id` or Express will treat `"available"` as the id.)
-- [ ] Add a simple request-counting middleware that logs how many total requests have hit the server.
+- [ ] Add `PATCH /api/reviews/:id` to update a review.
+- [ ] Add `GET /api/books/available` that returns only books where `available` is `true`. (Hint: this route must be defined **before** `/api/books/:id`, or Express will treat `"available"` as an id.)
+- [ ] Add middleware that counts every request that hits your server and logs the running total.
 
 ## Finished Checklist
 
 Before submitting, verify:
 
 - [ ] `node app.js` starts without errors.
-- [ ] All five book routes return the correct status codes in Postman.
-- [ ] `GET /api/books?genre=Sci-Fi` returns only matching books.
-- [ ] POST creates a new book; GET all confirms it's there.
-- [ ] PATCH only updates the provided fields.
-- [ ] DELETE removes the book; GET all confirms it's gone.
-- [ ] Review routes work for GET and POST.
-- [ ] Missing required fields return `400`, not `500`.
+- [ ] `GET /api/books` returns all 5 starter books.
+- [ ] `GET /api/books/:id` returns one book, or `404` if not found.
+- [ ] `POST /api/books` creates a new book; `GET /api/books` confirms it's there.
+- [ ] `PATCH /api/books/:id` changes only the fields you sent.
+- [ ] `DELETE /api/books/:id` removes the book; `GET /api/books` confirms it's gone.
 - [ ] Your work has been committed and pushed to GitHub.
