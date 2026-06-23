@@ -103,9 +103,10 @@ June 22 – June 26
 | Topic                      | Assignment         | Lecture | Slides                      | Demo |
 | -------------------------- | ------------------ | ------- | --------------------------- | ---- |
 | Introduction to Express.js | [📝][express-asst] | -       | [PDF][fullstack-api-slides] | -    |
-| Middleware & Routing       | -                  | -       | [PDF][fullstack-api-slides] | -    |
+| Middleware & Routing       | [📝][middleware-asst] | -    | [PDF][fullstack-api-slides] | -    |
 
 [express-asst]: ./assignments/Express.md
+[middleware-asst]: ./assignments/Middleware.md
 
 ---
 
