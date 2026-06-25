@@ -104,11 +104,16 @@ June 22 – June 26
 | -------------------------- | ------------------ | ------- | --------------------------- | ---- |
 | Introduction to Express.js | [📝][express-asst] | -       | [PDF][fullstack-api-slides] | [📽️ express-intro][express-intro-demo]    |
 | Middleware & Routing       | [📝][middleware-asst] | -    | [PDF][fullstack-api-slides] | [📽️ express-intro-review][express-intro-review]    |
+| Frontend Integration       | [📝][frontend-integration-asst] | - | [PDF][fullstack-api-slides] | -    |
+| Server Checkpoint          | [📝][server-checkpoint-asst] | -   | -                            | -    |
+
 
 [express-asst]: ./assignments/Express.md
 [middleware-asst]: ./assignments/Middleware.md
 [express-intro-demo]: https://youtu.be/26ss1W9w-HA
 [express-intro-review]: https://youtu.be/HD1oq94iEFI
+[frontend-integration-asst]: ./assignments/FrontendIntegration.md
+[server-checkpoint-asst]: ./assignments/ServerCheckpoint.md
 
 ---
 
