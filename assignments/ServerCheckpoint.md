@@ -9,6 +9,7 @@ If you do get stuck, write down what you tried. Write down what confused you.
 When you are done, push your work to a GitHub repository. Share the link.
 
 express doc: https://expressjs.com/en/5x/starter/hello-world/
+
 array method cheat sheet: https://gist.github.com/ajeetkumarrauniyar/48d28c0c65b06c35bbeefdfc40453ac8
 
 ---
@@ -59,6 +60,9 @@ let nextId = 5;
 ## Part 1 — CRUD
 
 You have built these five routes before. Build them again. Then add two small new things: `req.query`, and `async`/`await`.
+
+`req.query`: https://expressjs.com/en/5x/api/request/#reqquery
+`async/await`: https://javascript.info/async-await
 
 For each **Explain** question, write your answer as a comment. Put it right below the code it's about.
 
