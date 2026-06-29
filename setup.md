@@ -92,3 +92,49 @@ Your computer will save it automatically after the first time — you won't be a
 step by step guide:
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh
+
+---
+
+### PostgreSQL
+
+Download: https://www.postgresql.org/download/
+
+PostgreSQL is not an app you open and look at — it's a **server**, the same idea as the Express server you already built. It's a program that starts up, runs quietly in the background, and listens for connections (on port `5432`, instead of an HTTP port like `8080`). The server is where your actual data lives. A GUI tool like **pgAdmin** or **Postico** doesn't contain your data — it just connects to the server and shows you what's there. We'll use one of these GUI tools all course instead of the `psql` command line.
+
+**Mac:**
+1. You already have Homebrew from the Git setup step. Run: `brew install postgresql`
+2. Start it as a background service — this is what makes it "running," and it'll keep running even after you close the terminal:
+   ```bash
+   brew services start postgresql
+   ```
+3. One extra step Mac needs that Windows doesn't: Homebrew makes *your own Mac username* the database superuser by default, not a role literally named `postgres`. Every assignment in this course assumes a role named `postgres`, so create it once, in your terminal:
+   ```bash
+   createuser -s postgres
+   ```
+   (This is the one and only command-line step — after this, you won't touch the terminal for database work again.)
+4. Install a GUI tool, either one:
+   - **pgAdmin** (free, works the same on Mac and Windows): https://www.pgadmin.org/download/pgadmin-4-macos/
+   - **Postico** (Mac-only, nicer native interface, free to try / paid after the trial): https://eggerapps.at/postico2/
+
+**Windows:**
+1. Go to https://www.postgresql.org/download/windows/ and download the installer (the EDB installer link).
+2. Run the installer. Click through the defaults, **except**:
+   - When asked to set a password for the `postgres` superuser, set one and **write it down somewhere safe** — you'll be typing this constantly for the rest of the course.
+   - Leave the port at the default, `5432`.
+3. The installer automatically installs **pgAdmin 4** for you — no separate download needed. That's the GUI tool we'll use all course.
+
+**Both Mac and Windows — connect with your GUI tool and confirm it works:**
+1. Open pgAdmin (or Postico). The first time you open pgAdmin, it may ask you to set a "master password" — that's just for pgAdmin itself, not your database.
+2. Create a new connection/server with these settings:
+   - Host: `localhost`
+   - Port: `5432`
+   - Username: `postgres`
+   - Password: the one you set during the Windows install (Mac: leave blank, then try `postgres` if it's rejected)
+3. Once connected, you should see a `postgres` database already listed by default.
+
+- [ ] You can see the connection in your GUI tool's sidebar without an error.
+- [ ] You can expand it and see the default `postgres` database.
+
+Good to know:
+- Closing pgAdmin or Postico does **not** stop the server — the server runs independently in the background and keeps running until your computer restarts or you stop it on purpose.
+- If your GUI tool ever fails to connect, the server itself probably isn't running. **Mac:** open a terminal and run `brew services restart postgresql`. **Windows:** open "Services" from the Start menu, find `postgresql-x64-...`, and make sure it says "Running".
