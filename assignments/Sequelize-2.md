@@ -28,12 +28,24 @@ Today adds one relationship on top of what you already built. The connection, th
 
 ## Setup
 
-Open your existing `books-api-db` from Assignment 10. Nothing new to fork or install — you're building directly on top of what already works.
-
+**If you completed Assignment 10 (`books-api-db` is working):**
+Open your existing repo. Nothing new to fork or install.
 - [ ] Start the server: `node app.js` should log "Server running on port 8080" with no errors.
-- [ ] Hit `GET /api/books` in Postman. You should get back real rows from the database.
+- [ ] Hit `GET /api/books` in Postman and get back real rows from the database.
+- [ ] If something is broken, fix it before adding anything new — a stable base matters more than moving fast.
 
-If something is broken from last time, fix it before adding anything new. A stable base matters more than moving fast.
+**If you did not finish Assignment 10 or your server isn't connecting:**
+Use the solution branch of the starter repo as your starting point instead:
+- [ ] Go to https://github.com/aghaffar570/books-api-starter/tree/solution
+- [ ] Fork the repo to your own GitHub account (the fork will include the `solution` branch).
+- [ ] Clone your fork: `git clone <your-fork-url>`
+- [ ] `cd books-api-starter`
+- [ ] Switch to the solution branch: `git checkout solution`
+- [ ] `npm install`
+- [ ] Start the server: `node app.js` — you should see "Server running on port 8080".
+- [ ] Verify it connects: `GET /api/books` in Postman should return real book rows.
+
+From here, everyone is on the same working base — five Sequelize routes, one `Book` model, connected to PostgreSQL. Today you add one more model and wire the relationship.
 
 ---
 
