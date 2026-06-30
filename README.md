@@ -125,15 +125,15 @@ June 29 – July 3
 </br>
 Off July 3 – INDEPENDENCE DAY (OBSERVED)
 
-| Topic           | Assignment           | Lecture | Slides                  | Demo |
-| --------------- | -------------------- | ------- | ----------------------- | ---- |
-| PostgreSQL      | [📝][postgres-asst]  | -       | [PDF][postgres-slides]  | -    |
-| Sequelize (ORM) | [📝][sequelize-asst] | -       | [PDF][sequelize-slides] | -    |
+| Topic                       | Assignment              | Lecture | Slides                | Demo |
+| --------------------------- | ----------------------- | ------- | --------------------- | ---- |
+| PostgreSQL + Sequelize I    | [📝][sequelize-asst]    | -       | [PDF][pg-seq-slides]  | [📽️ postgres-sequelize][pg-seq-demo] |
+| Sequelize II — Associations | [📝][sequelize-2-asst]  | -       | [PDF][pg-seq-slides]  | -    |
 
-[postgres-asst]: ./assignments/PostgreSQL.md
 [sequelize-asst]: ./assignments/Sequelize.md
-[postgres-slides]: ./slides/PostgreSQL.pdf
-[sequelize-slides]: ./slides/Sequelize.pdf
+[sequelize-2-asst]: ./assignments/Sequelize-2.md
+[pg-seq-slides]: ./slides/PostgreSQL-Express-Sequelize.pdf
+[pg-seq-demo]: https://youtu.be/58xhnlCkqRo
 
 ---
 
