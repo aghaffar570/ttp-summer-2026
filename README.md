@@ -128,14 +128,17 @@ Off July 3 – INDEPENDENCE DAY (OBSERVED)
 | Topic                       | Assignment              | Lecture | Slides                | Demo |
 | --------------------------- | ----------------------- | ------- | --------------------- | ---- |
 | PostgreSQL + Sequelize I    | [📝][sequelize-asst]    | -       | [PDF][pg-seq-slides]  | [📽️ lecture][pg-seq-demo] [📽️ workshop pt 1][seq-workshop-1] [📽️ workshop pt 2][seq-workshop-2] |
-| Sequelize II — Associations | [📝][sequelize-2-asst]  | -       | [PDF][pg-seq-slides]  | -    |
+| Sequelize II — Associations | [📝][sequelize-2-asst]  | -       | [PDF][pg-seq-slides]  | [📽️ review][seq-2-demo] |
+| Full-Stack Workshop         | [📝][fullstack-asst]    | -       | -                     | -    |
 
 [sequelize-asst]: ./assignments/Sequelize.md
 [sequelize-2-asst]: ./assignments/Sequelize-2.md
+[fullstack-asst]: ./assignments/FullStack.md
 [pg-seq-slides]: ./slides/PostgreSQL-Express-Sequelize.pdf
 [pg-seq-demo]: https://youtu.be/58xhnlCkqRo
 [seq-workshop-1]: https://youtu.be/1sX_PADYI9I
 [seq-workshop-2]: https://youtu.be/VmNE7dYqbEQ
+[seq-2-demo]: https://youtu.be/_W0VLEn7aVQ
 
 ---
 
