@@ -13,6 +13,8 @@ You have built each piece of this separately:
 
 Today you connect all three. The frontend is no longer talking to some server out on the internet — it's talking to *your* server. And your server is no longer forgetting data on restart — it's writing to a real database. This is how a real web app works.
 
+![Frontend → Backend → ORM → Database](../assets/fe-be-orm-db.png)
+
 ## Objectives
 
 - Wire a Sequelize connection to a PostgreSQL database.
