@@ -28,12 +28,12 @@ Let's build something great.
 
 June 1 – June 5
 
-| Topic                      | Assignment          | Lecture | Slides                 | Demo |
-| -------------------------- | ------------------- | ------- | ---------------------- | ---- |
-| Introduction to JavaScript | [📝 workshop][js-asst]       | -       | [PDF][js-slides]       | [JS][js-intro-demo]              |
-| JavaScript Continued       | [📝 workshop][js-asst]       | -       | [PDF][js-slides]       | [JS][js-part2-demo]              |
-| HTML & CSS                 | [📝 workshop][html-css-asst] | -       | [PDF][html-css-slides] | [HTML][html-demo] / [CSS][css-demo] |
-| Git (Solo Workflow)        | [📝 workshop][git-solo-asst] | -       | [PDF][git-slides]      | -                                |
+| Topic                      | Assignment                   | Slides                 | Demo |
+| -------------------------- | ---------------------------- | ---------------------- | ---- |
+| Introduction to JavaScript | [📝 workshop][js-asst]       | [PDF][js-slides]       | [JS][js-intro-demo]              |
+| JavaScript Continued       | [📝 workshop][js-asst]       | [PDF][js-slides]       | [JS][js-part2-demo]              |
+| HTML & CSS                 | [📝 workshop][html-css-asst] | [PDF][html-css-slides] | [HTML][html-demo] / [CSS][css-demo] |
+| Git (Solo Workflow)        | [📝 workshop][git-solo-asst] | [PDF][git-slides]      | -                                |
 
 [html-css-asst]: https://github.com/aghaffar570/TTP-workshops/tree/main/html-css
 [js-asst]: https://github.com/aghaffar570/TTP-workshops/tree/main/js-fundamentals
@@ -52,10 +52,10 @@ June 1 – June 5
 
 June 8 – June 12
 
-| Topic                        | Assignment                                                              | Lecture | Slides                                          | Demo |
-| ---------------------------- | ----------------------------------------------------------------------- | ------- | ----------------------------------------------- | ---- |
-| DOM Manipulation             | [📝 workshop][dom-asst]                         | -       | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | [📽️][dom-solution-part1]    |
-| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst]                                                   | -       | [PDF][git-slides]                               | [📽️][git-collaboration-demo] [📽️][git-fork-demo]   |
+| Topic                        | Assignment                     | Slides                                          | Demo |
+| ---------------------------- | ------------------------------ | ----------------------------------------------- | ---- |
+| DOM Manipulation             | [📝 workshop][dom-asst]        | [DOM I][dom-i-slides] / [DOM II][dom-ii-slides] | [📽️][dom-solution-part1]    |
+| Git (Collaborative Workflow) | [📝 workshop][git-collab-asst] | [PDF][git-slides]                               | [📽️][git-collaboration-demo] [📽️][git-fork-demo]   |
 
 [git-collab-asst]: ./assignments/Git-Collab.md
 [ai-tools-asst]: ./assignments/AI-Tools-Setup.md
@@ -75,11 +75,11 @@ June 15 – June 19
 </br>
 Off June 19 – JUNETEENTH
 
-| Topic        | Assignment        | Lecture | Slides                      | Demo |
-| ------------ | ----------------- | ------- | --------------------------- | ---- |
-| React I      | [📝][react1-asst] | -       | [PDF][react-slides]        | [📽️ react-1][react-demo-1] [[📽️ checkpoint-review]][checkpoint-review]    |
-| React II     | [📝][react2-asst] | -       | [PDF][react-slides]        | [📽️ react-2][react-demo-2]  [📽️ movie-list-review][movie-solution]  |
-| API Requests | [📝][api-asst]    | -       | [PDF][fullstack-api-slides] | [📽️ react-rsvp-review][react-rsvp-review]   [📽️ api-&-fetch][api-&-fetch] |
+| Topic        | Assignment                 | Slides                      | Demo |
+| ------------ | -------------------------- | --------------------------- | ---- |
+| React I      | [📝 workshop][react1-asst] | [PDF][react-slides]         | [📽️ react-1][react-demo-1] [📽️ checkpoint-review][checkpoint-review]    |
+| React II     | [📝 workshop][react2-asst] | [PDF][react-slides]         | [📽️ react-2][react-demo-2]  [📽️ movie-list-review][movie-solution]  |
+| API Requests | [📝 workshop][api-asst]    | [PDF][fullstack-api-slides] | [📽️ react-rsvp-review][react-rsvp-review]   [📽️ api-&-fetch][api-&-fetch] |
 
 
 [react1-asst]: ./assignments/React.md
@@ -100,12 +100,12 @@ Off June 19 – JUNETEENTH
 
 June 22 – June 26
 
-| Topic                      | Assignment         | Lecture | Slides                      | Demo |
-| -------------------------- | ------------------ | ------- | --------------------------- | ---- |
-| Introduction to Express.js | [📝][express-asst] | -       | [PDF][fullstack-api-slides] | [📽️ express-intro][express-intro-demo]    |
-| Middleware & Routing       | [📝][middleware-asst] | -    | [PDF][fullstack-api-slides] | [📽️ express-intro-review][express-intro-review]    |
-| Frontend Integration       | [📝][frontend-integration-asst] | - | [PDF][fullstack-api-slides] | [📽️ express-review-II][express-review-II]   |
-| Server Checkpoint          | [📝][server-checkpoint-asst] | -   | -                            |  [📽️ reac-FE-with-express-BE][FE-with-BE]   |
+| Topic                      | Assignment                               | Slides                      | Demo |
+| -------------------------- | ---------------------------------------- | --------------------------- | ---- |
+| Introduction to Express.js | [📝 workshop][express-asst]              | [PDF][fullstack-api-slides] | [📽️ express-intro][express-intro-demo]    |
+| Middleware & Routing       | [📝 workshop][middleware-asst]           | [PDF][fullstack-api-slides] | [📽️ express-intro-review][express-intro-review]    |
+| Frontend Integration       | [📝 workshop][frontend-integration-asst] | [PDF][fullstack-api-slides] | [📽️ express-review-II][express-review-II]   |
+| Server Checkpoint          | [📝 workshop][server-checkpoint-asst]   | -                           | [📽️ react-FE-with-express-BE][FE-with-BE]   |
 
 
 [express-asst]: ./assignments/Express.md
@@ -125,11 +125,11 @@ June 29 – July 3
 </br>
 Off July 3 – INDEPENDENCE DAY (OBSERVED)
 
-| Topic                       | Assignment              | Lecture | Slides                | Demo |
-| --------------------------- | ----------------------- | ------- | --------------------- | ---- |
-| PostgreSQL + Sequelize I    | [📝][sequelize-asst]    | -       | [PDF][pg-seq-slides]  | [📽️ lecture][pg-seq-demo] [📽️ workshop pt 1][seq-workshop-1] [📽️ workshop pt 2][seq-workshop-2] |
-| Sequelize II — Associations | [📝][sequelize-2-asst]  | -       | [PDF][pg-seq-slides]  | [📽️ review][seq-2-demo] |
-| Full-Stack Workshop         | [📝][fullstack-asst]    | -       | -                     | -    |
+| Topic                       | Assignment                      | Slides               | Demo |
+| --------------------------- | ------------------------------- | -------------------- | ---- |
+| PostgreSQL + Sequelize I    | [📝 workshop][sequelize-asst]   | [PDF][pg-seq-slides] | [📽️ lecture][pg-seq-demo] [📽️ sequelize pt 1][seq-workshop-1] [📽️ sequelize pt 2][seq-workshop-2] |
+| Sequelize II — Associations | [📝 workshop][sequelize-2-asst] | [PDF][pg-seq-slides] | [📽️ sequelize II review][seq-2-demo] |
+| Full-Stack Workshop         | [📝 workshop][fullstack-asst]   | -                    | -    |
 
 [sequelize-asst]: ./assignments/Sequelize.md
 [sequelize-2-asst]: ./assignments/Sequelize-2.md
@@ -146,10 +146,10 @@ Off July 3 – INDEPENDENCE DAY (OBSERVED)
 
 July 6 – July 10
 
-| Topic                              | Assignment         | Lecture | Slides | Demo |
-| ---------------------------------- | ------------------ | ------- | ------ | ---- |
-| Client-Side Routing (React Router) | [📝][routing-asst] | -       | -      | -    |
-| Curriculum Review                  | -                  | -       | -      | -    |
+| Topic                              | Assignment                  | Slides | Demo |
+| ---------------------------------- | --------------------------- | ------ | ---- |
+| Client-Side Routing (React Router) | [📝 workshop][routing-asst] | -      | -    |
+| Curriculum Review                  | -                           | -      | -    |
 
 [routing-asst]: ./assignments/ClientSideRouting.md
 
@@ -159,11 +159,11 @@ July 6 – July 10
 
 July 13 – July 17
 
-| Topic                             | Assignment      | Lecture | Slides                      | Demo |
-| --------------------------------- | --------------- | ------- | --------------------------- | ---- |
-| CRUD App (Solo)                   | [📝][crud-asst] | -       | [PDF][fullstack-api-slides] | -    |
-| Deployment (Vercel + Neon)        | -               | -       | -                           | -    |
-| Authentication & Security (Auth0) | [📝][auth-asst] | -       | -                           | -    |
+| Topic                             | Assignment               | Slides                      | Demo |
+| --------------------------------- | ------------------------ | --------------------------- | ---- |
+| CRUD App (Solo)                   | [📝 workshop][crud-asst] | [PDF][fullstack-api-slides] | -    |
+| Deployment (Vercel + Neon)        | -                        | -                           | -    |
+| Authentication & Security (Auth0) | [📝 workshop][auth-asst] | -                           | -    |
 
 [crud-asst]: ./assignments/CRUD.md
 [auth-asst]: ./assignments/Auth.md
@@ -174,10 +174,10 @@ July 13 – July 17
 
 July 20 – July 24
 
-| Topic                  | Assignment            | Lecture | Slides | Demo / Starting Point |
-| ---------------------- | --------------------- | ------- | ------ | --------------------- |
-| Capstone I Kickoff     | [📝][capstone-i-asst] | -       | -      | -                     |
-| Agile / Scrum Overview | -                     | -       | -      | -                     |
+| Topic                  | Assignment                     | Slides | Demo / Starting Point |
+| ---------------------- | ------------------------------ | ------ | --------------------- |
+| Capstone I Kickoff     | [📝 workshop][capstone-i-asst] | -      | -                     |
+| Agile / Scrum Overview | -                              | -      | -                     |
 
 [capstone-i-asst]: ./assignments/capstone-1.md
 
@@ -187,10 +187,10 @@ July 20 – July 24
 
 July 27 – July 31
 
-| Topic                          | Assignment | Lecture | Slides | Demo / Starting Point |
-| ------------------------------ | ---------- | ------- | ------ | --------------------- |
-| Capstone II                    | -          | -       | -      | -                     |
-| WebSockets (Optional Advanced) | -          | -       | -      | -                     |
+| Topic                          | Assignment | Slides | Demo / Starting Point |
+| ------------------------------ | ---------- | ------ | --------------------- |
+| Capstone II                    | -          | -      | -                     |
+| WebSockets (Optional Advanced) | -          | -      | -                     |
 
 ---
 
@@ -198,10 +198,10 @@ July 27 – July 31
 
 August 3 – August 14
 
-| Topic                   | Assignment | Lecture | Slides | Demo / Starting Point |
-| ----------------------- | ---------- | ------- | ------ | --------------------- |
-| Capstone III — Sprint 1 | -          | -       | -      | -                     |
-| Capstone III — Sprint 2 | -          | -       | -      | -                     |
+| Topic                   | Assignment | Slides | Demo / Starting Point |
+| ----------------------- | ---------- | ------ | --------------------- |
+| Capstone III — Sprint 1 | -          | -      | -                     |
+| Capstone III — Sprint 2 | -          | -      | -                     |
 
 ---
 
@@ -209,10 +209,10 @@ August 3 – August 14
 
 August 17 – August 21
 
-| Topic                        | Assignment | Lecture | Slides | Demo / Starting Point |
-| ---------------------------- | ---------- | ------- | ------ | --------------------- |
-| Demo Day Prep                | -          | -       | -      | -                     |
-| Demo Day (August 21, Onsite) | -          | -       | -      | -                     |
+| Topic                        | Assignment | Slides | Demo / Starting Point |
+| ---------------------------- | ---------- | ------ | --------------------- |
+| Demo Day Prep                | -          | -      | -                     |
+| Demo Day (August 21, Onsite) | -          | -      | -                     |
 
 ---
 
