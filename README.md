@@ -149,6 +149,8 @@ July 6 – July 10
 | Topic                              | Assignment                  | Slides | Demo |
 | ---------------------------------- | --------------------------- | ------ | ---- |
 | Client-Side Routing (React Router) | [📝 workshop][routing-asst] | -      | -    |
+| Frontend Full Review               | -                           | -      | -    |
+| Backend Full Review               | -                           | -      | -    |
 | Curriculum Review                  | -                           | -      | -    |
 
 [routing-asst]: ./assignments/ClientSideRouting.md

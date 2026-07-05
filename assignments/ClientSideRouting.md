@@ -20,7 +20,7 @@ Last week you built a working Quotes app that talked to your Express backend —
 
 This week starts from a **new starter repo**, `quotes-frontend-router-starter` — not your `quotes-frontend` fork from last week. It's a fresh, focused project just for practicing routing.
 
-- [ ] Fork `quotes-frontend-router-starter` on GitHub, then clone your fork
+- [ ] Fork [`quotes-frontend-router-starter`](https://github.com/aghaffar570/quotes-frontend-router-starter) on GitHub, then clone your fork
 - [ ] `cd` into the project and run `npm install`
 - [ ] `npm run dev` and open the URL Vite gives you
 
