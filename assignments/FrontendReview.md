@@ -538,7 +538,9 @@ The count (in the navbar) and the buttons (on the cards) are far apart, but they
 
 ### Steps
 
-1. In `App.jsx`, add a `favorites` state array. Add `toggleFavorite(movie)` (add if missing, remove if already there — always make a **new** array) and `isFavorite(id)`.
+1. In `App.jsx`, add a `favorites` state array. 
+    - Add `toggleFavorite(movie)`  this function adds the movie if it's not saved to favorites, remove it if it is (always make a **new** array)
+    - Add `isFavorite(id)` - this function should tell you if the movie is currently favorited or not (boolean)
 2. Make `components/Navbar.jsx`. Pass it the favorites **count** as a prop and show it. Put `<Navbar />` above `<Routes>`.
 3. Pass `toggleFavorite` and `isFavorite` down: `App` → `Home` → `MovieCard`.
 4. In `MovieCard.jsx`, add a Save button. Use `e.preventDefault()` so clicking it does not open the card's `Link`.
