@@ -108,10 +108,14 @@ Two endpoints for today. Swap in your own API's endpoints if you are following a
 https://api.themoviedb.org/3/movie/popular?api_key=YOUR_KEY
 ```
 
+>> https://developer.themoviedb.org/reference/movie-popular-list
+
 **One movie by id (the detail page):**
 ```
 https://api.themoviedb.org/3/movie/550?api_key=YOUR_KEY
 ```
+
+>> https://developer.themoviedb.org/reference/movie-details
 
 Lists come back in a `results` array. Each movie has `id`, `title`, `poster_path`, `vote_average`, `release_date`, and `overview`. Put this in front of `poster_path` to get the image:
 ```
