@@ -1,10 +1,8 @@
 # Frontend Review Workshop — Movie App (TMDB)
 
-Week 6 · Client-Side Routing Review
+We build a movie app with React and Vite, one small step at a time.
 
-We build a movie app with React and Vite, one small step at a time. By the end you have a real app: a grid of movies, a detail page, and a favorites list.
-
-**Follow the instructor step by step. The instructor uses a different API, but the steps are the same. The ideas are what matter.**
+By the end you have a real app: a grid of movies, a detail page, and a favorites list.
 
 > Code is hidden in **Show the code** toggles. Try the step from the plain-English instructions first. Open the toggle if you get stuck or want to check your work.
 
