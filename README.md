@@ -148,12 +148,19 @@ July 6 – July 10
 
 | Topic                              | Assignment                  | Slides | Demo |
 | ---------------------------------- | --------------------------- | ------ | ---- |
-| Client-Side Routing (React Router) | [📝 workshop][routing-asst] | -      | -    |
-| Frontend Full Review               | -                           | -      | -    |
-| Backend Full Review               | -                           | -      | -    |
+| Client-Side Routing (React Router) | [📝 workshop][routing-asst] | -      | [📽️ react-router][react-router-intro-vid]  [📽️ FS workshop review][FS-workshop-review-vid]  |
+| Frontend Full Review               | [📝 workshop][frontend-review-asst]  | -      | [📽️ react-router-II][react-router-workshop-vid]  [📽️ FE review][fe-review-concepts-vid]  |
+| Backend Full Review               | [📝 workshop][backend-review-asst] | -      | -    |
 | Curriculum Review                  | -                           | -      | -    |
 
 [routing-asst]: ./assignments/ClientSideRouting.md
+[frontend-review-asst]: ./assignments/FrontendReview.md
+[backend-review-asst]: ./assignments/BackendReview.md
+
+[fe-review-concepts-vid]: https://youtu.be/uU1LzvQr1JA
+[react-router-workshop-vid]: https://youtu.be/4QHBZDel8rU
+[FS-workshop-review-vid]: https://youtu.be/Jbi-FYWnJJk
+[react-router-intro-vid]: https://youtu.be/6npqbuzOkcQ
 
 ---
 
