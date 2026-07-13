@@ -4,11 +4,13 @@ A setup guide for taking your full-stack app from **your laptop** to **the inter
 
 > This is not a workshop with graded tasks. It's a reference you follow, top to bottom, when you're ready to put your app online. Read Part 0 first — the mental model matters more than the button-clicking.
 
+![Diagram: moving each layer of a PERN app from localhost to production — the React frontend to Vercel, the Express backend to Render, and the Postgres database to Neon](../assets/local-to-prod.png)
+
 ### 🧭 Where you are
 
 This guide has four parts. **Do them in order, one at a time.** Parts 1–3 are collapsed below — click a part open only when you're ready to work on it, so you're never staring at the whole wall of text at once.
 
-- **Part 0 — The Big Picture** — read first (always open, right below)
+- **Part 0 — The Big Picture** — read first
 - ▸ **Part 1 — The Database ([Neon](https://neon.com/))**
 - ▸ **Part 2 — The Backend ([Render](https://render.com/))**
 - ▸ **Part 3 — The Frontend ([Vercel](https://vercel.com/))**
