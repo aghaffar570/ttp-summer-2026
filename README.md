@@ -151,7 +151,6 @@ July 6 – July 10
 | Client-Side Routing (React Router) | [📝 workshop][routing-asst] | -      | [📽️ react-router][react-router-intro-vid]  [📽️ FS workshop review][FS-workshop-review-vid]  |
 | Frontend Full Review               | [📝 workshop][frontend-review-asst]  | -      | [📽️ react-router-II][react-router-workshop-vid]  [📽️ FE review][fe-review-concepts-vid]  |
 | Backend Full Review               | [📝 workshop][backend-review-asst] | -      | -    |
-| Curriculum Review                  | -                           | -      | -    |
 
 [routing-asst]: ./assignments/ClientSideRouting.md
 [frontend-review-asst]: ./assignments/FrontendReview.md
@@ -170,12 +169,14 @@ July 13 – July 17
 
 | Topic                             | Assignment               | Slides                      | Demo |
 | --------------------------------- | ------------------------ | --------------------------- | ---- |
-| CRUD App (Solo)                   | [📝 workshop][crud-asst] | [PDF][fullstack-api-slides] | -    |
-| Deployment (Vercel + Neon)        | -                        | -                           | -    |
+| Deployment (Vercel + Render + Neon)| [📝 guide][deploy-asst]  | -                           | [📽️ internet & web dev][web-dev-vid] [📽️ deployment demo][deploy-demo-vid] |
 | Authentication & Security (Auth0) | [📝 workshop][auth-asst] | -                           | -    |
 
 [crud-asst]: ./assignments/CRUD.md
+[deploy-asst]: ./assignments/Deployment.md
 [auth-asst]: ./assignments/Auth.md
+[web-dev-vid]: https://youtu.be/tb8MWUzIX3E
+[deploy-demo-vid]: https://youtu.be/X3KK_0bM4fA
 
 ---
 
