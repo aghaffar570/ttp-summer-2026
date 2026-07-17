@@ -242,6 +242,31 @@ Then in your code, replace hardcoded `http://localhost:3000` with `import.meta.e
    - `VITE_API_URL` → your Render backend URL from Part 2.
 5. Click **Deploy.** Vercel builds and publishes, then gives you a public URL like `https://my-app.vercel.app`. **This is the link you share** — it's the front door to your whole app.
 
+### One more file: make refresh and deep links work
+
+Try this on your fresh deploy: navigate to a page like `/polls/3`, then hit **refresh**. You'll likely get a **404 — Not Found**. Sharing that same link with a friend does the same thing. But clicking around from the home page works fine. What's going on?
+
+Here's the mental model. Your app is a **Single-Page Application (SPA)**: Vercel only ever serves *one* real file, `index.html`. **React Router** does the rest — when you click a link, no request goes to the server; React Router just swaps what's on screen and updates the URL in the address bar. The `/polls/3` "page" exists only inside the browser.
+
+So the two cases are different:
+
+- **Clicking a link** → React Router handles it in the browser. No server involved. Works.
+- **Refreshing or pasting the URL** → the browser asks Vercel, "give me the file at `/polls/3`." Vercel looks for a file at that path, finds nothing (there's only `index.html`), and returns **404**.
+
+The fix is to tell Vercel: *for any path, serve `index.html` anyway, and let React Router figure out the rest.* You do that with a **`vercel.json`** file in the **root of your frontend project** (next to `package.json`):
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+Ref: https://vercel.com/docs/routing/rewrites
+
+Read it plainly: "for any request path (`/(.*)` means *anything*), send back `/index.html`." Now a refresh on `/polls/3` loads `index.html`, React Router boots up, sees the URL is `/polls/3`, and renders the right page. Commit this file, push, and Vercel will pick it up on the next deploy.
+
+> This is **not** the same as the "no data appears" bug. That one is CORS or a wrong `VITE_API_URL` — the backend. This one is a **404 on the page itself**, before any data is fetched — it's about how the *frontend* is served.
+
 </details>
 
 ---
@@ -285,6 +310,7 @@ Copy this into your notes and tick through it in order.
 - [ ] No secrets in any `VITE_` variable
 - [ ] Frontend pushed to GitHub, deployed on Vercel
 - [ ] `VITE_API_URL` set in Vercel's Environment settings
+- [ ] `vercel.json` with the SPA rewrite is in the frontend root (refresh/deep links work)
 
 **Close the loop**
 - [ ] Backend CORS updated to allow the real Vercel URL, then redeployed
@@ -299,6 +325,7 @@ Almost every problem is *one layer failing to reach the next.* When something br
 | What you see | What it usually means | Where to look |
 | --- | --- | --- |
 | Frontend loads, but no data appears | Frontend can't reach the backend | Is `VITE_API_URL` set correctly on Vercel? Did you rebuild after setting it? |
+| **404** when you refresh or share a URL like `/polls/3` (but clicking links works) | Vercel is looking for a file at that path; React Router routes live only in the browser | Add `vercel.json` with the SPA rewrite to the frontend root, then redeploy (Part 3) |
 | Console error mentioning **CORS** / "blocked by CORS policy" | Backend isn't allowing your frontend's origin | Update the backend's CORS config to your Vercel URL, push, let Render redeploy (Part 4) |
 | Requests to `http://localhost:3000` in the Network tab | Frontend still hardcoded to localhost | Replace with `import.meta.env.VITE_API_URL` and redeploy |
 | Backend logs show a database connection error | Backend can't reach Neon | Check `DATABASE_URL` on Render; confirm SSL is enabled in Sequelize |
