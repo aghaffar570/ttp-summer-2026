@@ -1,13 +1,15 @@
-# Frontend Review (Week 6, after Client-Side Routing)
+# FULLSTACK - PERN Concept Review
+
+# Frontend Review 
 
 Comprehensive pass over everything frontend-related so far. It includes topics from HTML-CSS, JS, DOM, DOM-Part2, React, React2, APIRequests, FrontendIntegration, and ClientSideRouting
 
-### HTML & CSS (should know each idea - we will cover in the context of REACT) ✅
+### HTML & CSS (should know each idea)
 - semantic tags vs. div soup (`header`/`nav`/`main`/`section`/`footer`)
 - forms: `label` connected to `input` via `for`/`id`, `required`, input types
 - box model + `box-sizing: border-box`
-- CSS variables in `:root`
 - selectors: element, class, descendant, child, pseudo-class/pseudo-element
+- CSS variables in `:root` & selector specificity
 - flexbox for layout
 - mobile-first responsive design + `@media (min-width: ...)`
 - styling in Vite — inline vs. external stylesheet vs. Tailwind (i will go over tailwind with REACT)
@@ -26,20 +28,20 @@ Comprehensive pass over everything frontend-related so far. It includes topics f
 - selecting elements: `getElementById`/`querySelectorAll`, HTMLCollection vs. NodeList
 - `textContent` vs. reading/writing attributes
 - `classList` (`add`/`remove`/`toggle`) instead of inline styles
-- attributes vs. properties (`getAttribute`/`setAttribute` vs. `.value`)
+- attributes vs. properties (`getAttribute`/`setAttribute` vs. `.value`) or modify the property directly 
 - event listeners + event delegation (`event.target` vs. `event.currentTarget`)
 - `closest()` to walk up the tree from a click target
-- creating elements dynamically (`createElement`/`appendChild`)
+- creating elements dynamically (`createElement`/`appendChild`) and remove elements with (`remove`)
 - form basics: `preventDefault()`, `form.reset()`
 
 ### React Fundamentals ✅
 - components + JSX
-- props — passing data down, prop drilling
+- props — passing data down, primitives, object or functions, prop drilling
 - `useState` — state vs. plain variables, why direct mutation doesn't re-render
 - rendering lists with `.map()` + `key`
 - updating state immutably (spread for objects/arrays instead of mutating)
 - conditional rendering (ternary, if/else, early return / guard clauses)
-- controlled inputs (`value` + `onChange`)
+- controlled inputs (`value` + `onChange`) with a useState
 - handling forms (`preventDefault`, building an object from state, clearing inputs after submit)
 - component extraction — when and why to split UI into a new file
 - react lifecycle, in plain terms — what causes a re-render, and when
@@ -51,22 +53,22 @@ Comprehensive pass over everything frontend-related so far. It includes topics f
 - why the function passed to `useEffect` can't be `async` itself (and the inner-function workaround)
 - hooks in general — rules of hooks (top level only, same order every render)
 - `useState` vs. `useEffect` — which tool for which job
-- ⚠️ `useContext` - avoid prop drilling - properly manage state across the app
-- ⚠️ `useRef` - useful to reference a mutable object and keep the value upon re-renders
-- ⚠️ `custom hooks` - create your own hooks!
+- `useContext` - avoid prop drilling - properly manage state across the app and use it in any component directly
+- `useRef` - useful to reference a mutable object and keep the value upon re-renders
+- `custom hooks` - create your own hooks!
 
 ### Data Fetching ✅
 - `fetch` + `async`/`await`
 - the three states of any request: loading / error / success
-- axios as an alternative to `fetch` — worth introducing now? (auto JSON parsing, error handling differences, wasn't used in any workshop so far)
+- axios as an alternative to `fetch` — (auto JSON parsing, error handling differences)
 - separating fetch logic into named functions (`fetchUsers`) instead of anonymous callbacks
 - connecting to their OWN Express backend vs. a public API — two servers, two ports, CORS
-- full CRUD from the frontend: GET/POST/DELETE/PATCH, headers, `JSON.stringify`
-- keeping client state in sync with the server — calling the setter only after the request succeeds
+- full CRUD from the frontend: GET/POST/DELETE/PATCH, headers, body with `JSON.stringify`
+- keeping client state in sync with the server — calling the setter function from useState only after the request succeeds
 
-### Client-Side Routing (just covered — reinforce concepts) ✅
+### Client-Side Routing ✅
 - `Routes`/`Route`, index routes
-- `Link`/`NavLink` vs. a plain `<a>`
+- `Link`/`NavLink` vs. a plain `<a>` - Link doesn't trigger a page refresh
 - `useParams` — dynamic segments, and the string-vs-number id gotcha
 - `useNavigate` — programmatic navigation after an action (e.g. form submit)
 - catch-all 404 route + why route order matters
@@ -74,18 +76,18 @@ Comprehensive pass over everything frontend-related so far. It includes topics f
 
 
 ### Loose Threads Worth Naming (awareness, not deep review)
-- environment variables for API URLs (`import.meta.env`) — mentioned once as a stretch goal, likely hasn't landed for most students
-- why refreshing the page loses anything added/deleted client-side only — good setup for "this is exactly what Week 7's real database fixes"
+- environment variables for API URLs (`import.meta.env`) — mentioned once as a stretch goal
+
+- why refreshing the page loses anything added/deleted client-side only - frontend is just the shell!
 
 ---
 
-# Backend Review (Week 6, after Client-Side Routing)
+# Backend Review
 
 Same comprehensive pass, backend side. Pulled from Express (Books API), Middleware (Recipes API), Sequelize I (Books + Postgres), Sequelize II (Associations), ServerCheckpoint (Plants API), and FullStack (Quotes — all three layers connected).
 
-> **⚠️ = not yet covered.** These are the gaps to close in review (Week 6) before the Week 7 CRUD/Auth solo and the capstone. Everything unmarked was taught and is being reinforced.
 
-### Node.js & Tooling Fundamentals (⚠️ gaps — never had a dedicated workshop)
+### Node.js & Tooling Fundamentals 
 - ⚠️ **module system — CommonJS vs. ES Modules.** Same word "module," two different systems. The backend workshops used CommonJS (`require(...)` / `module.exports`); React + Vite used ES Modules (`import` / `export`). That's why the two halves of their stack *looked* different. Node defaults to CommonJS; adding `"type": "module"` to `package.json` flips a Node project to `import`/`export`. Naming this removes a source of quiet confusion 
 - ⚠️ **the `"scripts"` block in `package.json`.** It turns a long command into a short name: `npm run dev` instead of `nodemon app.js`, `npm start` instead of `node app.js`. Two reasons it matters now: (1) it's where `nodemon` lives so you stop retyping it, and (2) deployment platforms (Vercel/Neon in Week 7) look at `scripts` to know how to start the app — no `start` script, no deploy. Check npm for reference.
 
