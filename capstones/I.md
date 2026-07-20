@@ -17,6 +17,19 @@ A simple polling app. Users can create a poll with multiple options, vote on it,
 
 ---
 
+## Team Setup — Do This Once, Together
+
+Before anyone writes code, set up your shared workspace **one time as a team** — not four times. Doing this step individually is the most common Day-1 mistake, and it leaves you with duplicate orgs and repos nobody agrees on.
+
+- **One** GitHub organization for your whole team.
+- **Two** repositories inside it: one **frontend** (React) and one **backend** (Express). Your database lives on Neon — it has no repo.
+- **One** teammate creates the org and both repos and invites everyone else; the rest **clone** both (don't fork).
+- Decide **who owns each deployment**: frontend → **Vercel**, backend → **Render**, database → **Neon**. Each part is deployed **once**, by its owner, who shares the live URL with the team — you don't each deploy your own copy.
+
+The video walkthrough and the full day-by-day workflow are in the **[Working Together guide](./guide.md)** — read it before you start.
+
+---
+
 ## Core Requirements
 
 Ship all of these before reaching for stretch goals.

@@ -23,15 +23,14 @@ Teams that spend a little time planning before coding tend to move faster and hi
 2. **Database schema diagram** — sketching your tables in [dbdiagram.io](https://dbdiagram.io) before writing models saves a lot of painful migrations later
 3. **UI wireframe** — even one rough screen in [Figma](https://www.figma.com) helps the team agree on what you're actually building
 4. **Team Norms document** — a quick conversation using [this template](https://docs.google.com/document/d/1kKkbEWmXAA6VJK5ZPmkyeqgySchUwpPvuWMVLuiYeSs/edit?usp=sharing) about PRs, disagreements, and working hours prevents a lot of friction later
-5. **Discord access** — make sure you can reach the cohort Discord on campus WiFi at [https://ptb.discord.com](https://ptb.discord.com)
 
 ---
 
 ## Getting Started (Once You Have the Repos)
 
-1. Make sure everyone is a collaborator and can push to the team repo
+1. Make sure everyone is a member of the org and can push to **both** repos
 2. Make sure everyone can run the project locally — if anyone can't, that's everyone's top priority
-3. Deploy all three layers early — frontend to **Vercel**, backend to **Render**, database to **Neon** — following the [Week 7 Deployment guide](../assignments/Deployment.md). Deploying a small app is far easier than a big one, so get the whole pipeline working before you pile on features
+3. Deploy early, and deploy each part **once**. Decide as a team **who owns each piece** — frontend to **Vercel**, backend to **Render**, database to **Neon** — following the [Week 7 Deployment guide](../assignments/Deployment.md). Each service is set up by *one* owner who then shares its URL (or connection string) with the team; you do **not** each deploy your own copy. Deploying a small app is far easier than a big one, so get the whole pipeline working before you pile on features
 
 ---
 
@@ -57,11 +56,16 @@ Collaboration is the whole point of this week, and Git is where collaboration ac
 
 **The golden rule: `main` always works.** Nobody commits directly to `main`, and nobody pushes broken code to it. Every change arrives through a Pull Request that a teammate has looked at. This one habit prevents most of the pain teams hit this week.
 
-### One shared repo — not forks
+### One organization, two repos — set up once
 
-- [ ] One teammate creates the team repo
-- [ ] Add the other three under **Settings → Collaborators**
-- [ ] Everyone clones the *same* repo (a fork is your own copy — that's not what you want here)
+> ▶ **Watch:** [Setting up your team's GitHub organization and repo](https://youtu.be/eSkNVGciXXo) — a full walkthrough of the org and repo setup (video only, no slides).
+
+**This is a one-time setup done by *one* teammate — not all four.** If everyone runs these steps, you'll end up with four organizations and a pile of duplicate repos. Pick one person to screen-share and do it while the others watch; everyone joins at the end.
+
+- [ ] **One** teammate creates a single GitHub **organization** for the team
+- [ ] Invite the other three into the organization
+- [ ] Inside the org, create **two** repos: one **frontend** (React) and one **backend** (Express). Your database lives on Neon and has no repo
+- [ ] Everyone **clones both** repos — clone the *same* repos, don't fork (a fork is your own separate copy, which is not what you want here)
 
 ### Branch for every piece of work
 
