@@ -8,6 +8,11 @@ This guide applies to all three capstones. Read it before you write a single lin
 
 Each group will be assigned a TA as your primary point of contact. They'll check in with you daily after lunch. It helps to keep them in the loop — what's going well, what's stuck, what decisions you're wrestling with. You can reach out to anyone on the instructional team, but your assigned TA is usually a good place to start.
 
+Your TA acts as your **project manager (PM)** — a coach who runs your standup and helps you get unblocked, not a teammate who writes your code. Two short companion docs go deeper, and you should read both before you start:
+
+- **[Getting Help & Escalation](./getting-help.md)** — who to ask, in what order, and how to ask so you actually get unblocked.
+- **[Using AI Responsibly](./ai-policy.md)** — how AI tools fit into a project you have to understand and defend.
+
 ---
 
 ## Before You Write Code
@@ -26,7 +31,68 @@ Teams that spend a little time planning before coding tend to move faster and hi
 
 1. Make sure everyone is a collaborator and can push to the team repo
 2. Make sure everyone can run the project locally — if anyone can't, that's everyone's top priority
-3. Deploy to Vercel immediately — it's much easier before you've added changes
+3. Deploy all three layers early — frontend to **Vercel**, backend to **Render**, database to **Neon** — following the [Week 7 Deployment guide](../assignments/Deployment.md). Deploying a small app is far easier than a big one, so get the whole pipeline working before you pile on features
+
+---
+
+## Daily Standup
+
+Every day, your team meets for a quick **standup** — about 10 minutes, run by your TA. It isn't a status report for management; it's how four people building one thing stay pointed in the same direction.
+
+Each person answers three questions:
+
+- **What did I do yesterday?**
+- **What do I intend to do today?**
+- **What's blocking me?**
+
+Keep blockers **specific**. "I'm stuck on the backend" isn't something anyone can act on. "My `POST /polls` returns a 500 and the error says `column pollId does not exist`" is. Name the code, the error message, or the teammate's PR you're waiting on.
+
+Standup is also where you say out loud what you're building — which happens to be the best proof that you actually understand it (see [Using AI Responsibly](./ai-policy.md)).
+
+---
+
+## The GitHub Workflow
+
+Collaboration is the whole point of this week, and Git is where collaboration actually happens. You last used the collaborative flow in Week 2 — here it is again, tuned for four people sharing **one** repo.
+
+**The golden rule: `main` always works.** Nobody commits directly to `main`, and nobody pushes broken code to it. Every change arrives through a Pull Request that a teammate has looked at. This one habit prevents most of the pain teams hit this week.
+
+### One shared repo — not forks
+
+- [ ] One teammate creates the team repo
+- [ ] Add the other three under **Settings → Collaborators**
+- [ ] Everyone clones the *same* repo (a fork is your own copy — that's not what you want here)
+
+### Branch for every piece of work
+
+A **branch** is a separate, safe copy of the code where you build one thing without disturbing anyone else.
+
+- [ ] Start from an up-to-date `main`: `git checkout main` then `git pull`
+- [ ] Make a branch named for the work: `git checkout -b create-poll-form`
+- [ ] Commit small and often as you go
+- [ ] Push your branch: `git push -u origin create-poll-form`
+
+### Open a Pull Request to merge in
+
+A **Pull Request (PR)** asks to merge your branch into `main`, and gives a teammate a place to review it first.
+
+- [ ] Open a PR from your branch into `main` on GitHub
+- [ ] Write a one-line description: what it does and how to test it
+- [ ] Link the issue it finishes (type `Closes #4` in the description)
+- [ ] Tag a teammate to review
+
+### Review before you merge
+
+- [ ] The reviewer pulls the branch and confirms it runs
+- [ ] The reviewer approves, or leaves comments
+- [ ] The author pushes fixes for any comments
+- [ ] Merge the PR, then delete the branch
+
+### Keep PRs small, and sync often
+
+- **Small PRs get reviewed; giant ones get rubber-stamped.** A PR touching 3 files is a 5-minute review. One touching 30 files is impossible to review and guarantees conflicts. Merge several small PRs a day rather than one giant one on Friday.
+- **A merge conflict is normal, not a disaster.** It just means two people changed the same lines. Pull `main` into your branch often so conflicts stay small — and the *first* time you hit one, do it with your TA rather than alone.
+- **Every PR traces back to your project board.** If work isn't an issue on the board, the team can't see it's happening.
 
 ---
 
