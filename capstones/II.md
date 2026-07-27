@@ -34,14 +34,18 @@ No approval required. If your scope needs adjusting, an instructor will let you 
 
 ## Idea Menu
 
-Pick one, or pitch your own:
+Every project below is buildable in a week by four people. They're grouped by difficulty: the **Comfortable** picks sit right at Capstone I's level, and the **Step up** picks each add *one* new idea — a new kind of relationship, or a single rule beyond plain create-read-update-delete. The "new idea it teaches" column shows where each project would grow you, so pick one that matches how your team is feeling.
 
-1. **Group Task Board** — create boards, add tasks, assign status (todo / in-progress / done)
-2. **Collaborative Event Planner** — create events, let others RSVP and leave comments
-3. **Recipe Box** — save recipes with ingredients and steps, browse and rate others'
-4. **Flashcard Study App** — create decks, flip through cards, track what you've mastered
-5. **Local Events Board** — post and discover local events, filter by category
-6. **Book Club Tracker** — log books read, leave reviews, join reading groups
+| # | Project | What you'd build | The new idea it teaches | Difficulty |
+|---|---------|------------------|-------------------------|------------|
+| 1 | **Recipe Box** | Save recipes with ingredients and steps; browse and rate others' | You design the whole schema yourself; ratings are tallied like Capstone I's votes | Comfortable |
+| 2 | **Group Potluck Planner** | Create an event, list the dishes needed, and let people claim a slot; show what's still unclaimed | A "claim" that's exclusive — one slot, one person — plus a live "what's left" view | Comfortable |
+| 3 | **Q&A Help Board** | Ask questions, post answers, upvote answers, and mark one answer as accepted | Familiar voting, plus a **state change** — one answer becomes the accepted one | Step up |
+| 4 | **Playlist / Watchlist Builder** | Build lists of songs, movies, or books; the same item can live on many lists | Your first **many-to-many** relationship — the natural next step after Capstone I | Step up |
+| 5 | **Class / Event Booking** | Offer sessions with limited seats; people book a spot, and the app blocks overbooking | A **rule beyond CRUD** — count the seats taken and refuse a booking once it's full | Step up |
+| 6 | **Café Order Builder** | Browse a menu, build an order with quantities, and see a running total | A join table that **carries data** (the quantity on each line) plus a computed total | Step up |
+
+Every one has an obvious next layer for stretch goals — add accounts, deploy it, or make it searchable.
 
 **Proposing your own?** It should be completable in a week by four people and touch every layer of the stack. If you're unsure, lean simpler.
 
