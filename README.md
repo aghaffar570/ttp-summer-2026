@@ -170,13 +170,14 @@ July 13 – July 17
 | Topic                             | Assignment               | Slides                      | Demo |
 | --------------------------------- | ------------------------ | --------------------------- | ---- |
 | Deployment (Vercel + Render + Neon)| [📝 guide][deploy-asst]  | -                           | [📽️ internet & web dev][web-dev-vid] [📽️ deployment demo][deploy-demo-vid] |
-| Authentication & Security (Auth0) | [📝 workshop][auth-asst] | -                           | -    |
+| Authentication & Security (Auth0) | [📝 workshop][auth-asst] | -                           | [📽️ authentication][auth-demo-vid] |
 
 [crud-asst]: ./assignments/CRUD.md
 [deploy-asst]: ./assignments/Deployment.md
 [auth-asst]: ./assignments/Auth.md
 [web-dev-vid]: https://youtu.be/tb8MWUzIX3E
 [deploy-demo-vid]: https://youtu.be/X3KK_0bM4fA
+[auth-demo-vid]: https://youtu.be/ATJd2Q784s4
 
 ---
 
@@ -236,7 +237,7 @@ August 17 – August 21
 | Backend    | Node.js, Express.js                              |
 | Database   | PostgreSQL, Sequelize                            |
 | Auth       | Auth0                                            |
-| Deployment | Vercel, Neon for Vercel, GitHub Pages            |
+| Deployment | Vercel (frontend), Render (backend), Neon (database) |
 
 **Developer Tools**
 
